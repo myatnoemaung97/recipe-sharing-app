@@ -1,0 +1,20 @@
+{
+    "name": "user/myapp",
+    "authors": [
+        {
+            "name": "myatnoemaung97",
+            "email": "myatnoemaung001@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-fileinfo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/",
+            "Models\\": "Models/",
+            "repositories\\": "repositories/"
+        }
+    }
+}

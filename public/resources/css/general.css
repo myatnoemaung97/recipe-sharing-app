@@ -1,0 +1,66 @@
+body {
+    background-color: #FAEBD7;
+    font-family: 'Lato', sans-serif;
+    position: relative;
+}
+
+main {
+    position: relative;
+}
+
+.content {
+    padding-top: 75px;
+}
+
+.heading {
+    font-family: 'Playfair Display', serif;
+}
+
+.slogan {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    margin: auto;
+}
+
+.recipe-card {
+    box-shadow: 1px 3px 8px rgba(0,0,0,0.2);
+    transition: transform 0.5s;
+}
+
+.recipe-card:hover {
+    transform: scale(1.03);
+}
+
+.change-photo-button {
+    display: none;
+}
+
+.recipe-image:hover .change-photo-button {
+    display: inline;
+}
+
+.save-photo-button {
+    display: none;
+}
+
+.recipe-image:hover .save-photo-button {
+    display: inline;
+}
+
+.full-heart-button {
+    display: none;
+}
+
+.favourite-tab:hover .empty-heart-button{
+    display: none;
+}
+
+.favourite-tab:hover .full-heart-button{
+    display: inline;
+}
+
+.full-heart-icon, .empty-heart-icon {
+    color: #FF0000;
+}
+
+
