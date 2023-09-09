@@ -10,37 +10,39 @@
 </head>
 
 <body>
-<header>
-    <?php require base_path('views/partials/nav.view.php') ?>
-</header>
-<main>
-    <div class="content">
-        <p class="slogan text-black mb-4 fs-4">Share, Savor, Swap Recipes Together</p>
-        <div class="container">
-        <h1 class="heading mb-3">My Recipes</h1>
-            <div class="row">
-                <?php foreach ($recipes as $recipe) : ?>
-                    <div class="col-12 col-md-4">
-                        <a class="no-underline" href="/recipe?id=<?= $recipe['id'] ?>">
-                            <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
-                                <img src=<?= $recipe['image'] ?> class="card-img-top" alt="recipe" style="height: 300px ;">
-                                <div class="card-body lh-1">
-                                    <h5 class="heading card-title fs-3"><?= $recipe['name'] ?></h5>
-                                    <p class="card-text"><?= $recipe['description'] ?></p>
-                                    <p>Cooking Time: <?= $recipe['time'] ?> minutes</p>
-                                    <p>Difficulty: <?= intToDifficulty($recipe['difficulty']) ?></p>
-                                    <p>Servings: <?= $recipe['servings'] ?></p>
-                                    <p>Ingredients: <?= $recipe['ingredients'] ?></p>
-                                </div>
+    <header>
+        <?php require base_path('views/partials/nav.view.php') ?>
+    </header>
+    <main>
+        <div class="content">
+            <p class="slogan text-black mb-4 fs-4">Share, Savor, Swap Recipes Together</p>
+            <div class="container">
+                <h1 class="heading mb-3">My Recipes</h1>
+                <?php if (!$recipes) : ?>
+                    <p class="fs-4">No recipes found</p>
+                    <a href="<?= $_SERVER['HTTP_REFERER'] ?>">Go back</a>
+                <?php else : ?>
+                    <div class="row">
+                        <?php foreach ($recipes as $recipe) : ?>
+                            <div class="col-12 col-md-4">
+                                <a class="no-underline" href="/recipe?id=<?= $recipe['id'] ?>">
+                                    <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
+                                        <img src=<?= $recipe['image'] ?> class="card-img-top" alt="recipe" style="height: 300px ;">
+                                        <div class="card-body lh-1">
+                                            <h5 class="heading card-title fs-3"><?= $recipe['name'] ?></h5>
+                                            <p class="card-text"><?= $recipe['description'] ?></p>
+                                            <p>Cooking Time: <?= $recipe['time'] ?> minutes</p>
+                                            <p>Difficulty: <?= intToDifficulty($recipe['difficulty']) ?></p>
+                                            <p>Servings: <?= $recipe['servings'] ?></p>
+                                            <p>Ingredients: <?= $recipe['ingredients'] ?></p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
-    </div>
-
-</main>
-
-
+    </main>
 </body>

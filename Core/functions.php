@@ -1,5 +1,6 @@
 <?php
 
+use Core\Response;
 use Core\Session;
 
 function dd($value) {
@@ -40,6 +41,24 @@ function login($user)
 function logout()
 {
     Session::destroy();
+}
+
+function abort($code = 404)
+{
+    http_response_code($code);
+
+    require base_path("views/{$code}.php");
+
+    die();
+}
+
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+    if (! $condition) {
+        abort($status);
+    }
+
+    return true;
 }
 
 function difficultyToInt($difficulty) {

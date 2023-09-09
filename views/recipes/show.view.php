@@ -36,7 +36,7 @@
                     <ul class="text-dark nav nav-underline nav-fill" style="width: 100%;">
                         <?php if (isset($_SESSION['user'])) : ?>
                             <li class="favourite-tab nav-item">
-                                <button id="unfavourite-button" class="<?= $isFavourite === false ? 'default-show' : 'default-hide' ?> nav-link" onclick="unfavourite(<?= $recipe['id'] ?>)">
+                                <button id="unfavourite-button" class="<?= $isFavourite === false ? 'default-show' : 'default-hide' ?> nav-link" onclick="unfavourite(<?= $recipe['id'] ?>)" title="Remove from favourites">
                                     <i class="empty-heart-icon fa-regular fa-heart fa-lg"></i>
                                 </button>
                                 <button id="favourite-button" class="<?= $isFavourite === false ? 'default-hide' : 'default-show' ?> unfavourite-button nav-link" onclick="favourite(<?= $recipe['id'] ?>)" title="Add to favourites">

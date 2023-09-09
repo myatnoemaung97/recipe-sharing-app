@@ -8,7 +8,7 @@
     <?php require BASE_PATH . 'public/resources/links/links.php' ?>
 </head>
 <body>
-<p style="font-size: 20px;">Sorry. Page not found.</p>
+<p style="font-size: 20px;">Sorry. You are not authorized for this action.</p>
 <?php if(isset($_SESSION['user'])) : ?>
     <a href="/home">Go back home</a>
 <?php else : ?>

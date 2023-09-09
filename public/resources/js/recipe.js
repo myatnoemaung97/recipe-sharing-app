@@ -63,7 +63,7 @@ function updateImagePreview() {
 }
 
 function savePhoto() {
-    
+
     alert('Photo saved!');
 }
 
@@ -77,17 +77,42 @@ function favourite(recipeId) {
         method: "POST",
         body: formData
     })
-    .then(response => {
-        if (response.ok) {
-            const favouriteButton = document.getElementById(`favourite-button`);
-            const unfavouriteButton = document.getElementById(`unfavourite-button`);
+        .then(response => {
+            if (response.ok) {
+                const favouriteButton = document.getElementById(`favourite-button`);
+                const unfavouriteButton = document.getElementById(`unfavourite-button`);
 
-            if (favouriteButton && unfavouriteButton) {
-                favouriteButton.classList.remove('default-hide');
-                favouriteButton.classList.add('default-show');
-                unfavouriteButton.classList.remove('default-show');
-                unfavouriteButton.classList.add('default-hide');
+                if (favouriteButton && unfavouriteButton) {
+                    favouriteButton.classList.remove('default-hide');
+                    favouriteButton.classList.add('default-show');
+                    unfavouriteButton.classList.remove('default-show');
+                    unfavouriteButton.classList.add('default-hide');
+                }
             }
-        }
-    });
+        });
+}
+
+function unfavourite(recipeId) {
+    const formData = new FormData();
+
+    formData.append('recipeId', recipeId);
+    formData.append('_method', 'DELETE');
+
+    fetch("/recipe/favourite", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => {
+            if (response.ok) {
+                const favouriteButton = document.getElementById(`favourite-button`);
+                const unfavouriteButton = document.getElementById(`unfavourite-button`);
+
+                if (favouriteButton && unfavouriteButton) {
+                    favouriteButton.classList.remove('default-show');
+                    favouriteButton.classList.add('default-hide');
+                    unfavouriteButton.classList.remove('default-hide');
+                    unfavouriteButton.classList.add('default-show');
+                }
+            }
+        });
 }
