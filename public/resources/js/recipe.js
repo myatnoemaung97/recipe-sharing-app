@@ -79,14 +79,14 @@ function favourite(recipeId) {
     })
         .then(response => {
             if (response.ok) {
-                const favouriteButton = document.getElementById(`favourite-button`);
-                const unfavouriteButton = document.getElementById(`unfavourite-button`);
+                const favBtn = document.getElementById(`fav-btn`);
+                const unfavBtn = document.getElementById(`unfav-btn`);
 
-                if (favouriteButton && unfavouriteButton) {
-                    favouriteButton.classList.remove('default-hide');
-                    favouriteButton.classList.add('default-show');
-                    unfavouriteButton.classList.remove('default-show');
-                    unfavouriteButton.classList.add('default-hide');
+                if (favBtn && unfavBtn) {
+                    favBtn.classList.add('hide');
+                    favBtn.classList.remove('show');
+                    unfavBtn.classList.remove('hide');
+                    unfavBtn.classList.add('show')
                 }
             }
         });
@@ -104,14 +104,14 @@ function unfavourite(recipeId) {
     })
         .then(response => {
             if (response.ok) {
-                const favouriteButton = document.getElementById(`favourite-button`);
-                const unfavouriteButton = document.getElementById(`unfavourite-button`);
+                const favBtn = document.getElementById(`fav-btn`);
+                const unfavBtn = document.getElementById(`unfav-btn`);
 
-                if (favouriteButton && unfavouriteButton) {
-                    favouriteButton.classList.remove('default-show');
-                    favouriteButton.classList.add('default-hide');
-                    unfavouriteButton.classList.remove('default-hide');
-                    unfavouriteButton.classList.add('default-show');
+                if (favBtn && unfavBtn) {
+                    favBtn.classList.add('show');
+                    favBtn.classList.remove('hide');
+                    unfavBtn.classList.remove('show');
+                    unfavBtn.classList.add('hide')
                 }
             }
         });
