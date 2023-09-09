@@ -11,11 +11,11 @@ $recipe = $recipeRepo->findById($_GET['id']);
 
 $isFavourite = false;
 
-$favourites = $favRepo->findByUserId($_SESSION['user']['id']);
-if (!empty($favourites)) {
-
+if (isset($_SESSION['user'])) {
+    $isFavourite = (bool) $favRepo->findByUserIdAndRecipeId($_SESSION['user']['id'], $_GET['id']);
 }
 
 view('/recipes/show.view.php',[
-    'recipe' => $recipe
+    'recipe' => $recipe,
+    'isFavourite' => $isFavourite
 ]);

@@ -15,7 +15,7 @@
 </header>
 <main>
     <div class="content">
-        <form class="d-flex flex-row justify-content-center align-items-center" style="max-width: 1000px; margin: auto;" action="/recipe/patch?id=<?= $recipe['id'] ?>" method="POST" enctype="multipart/form-data">
+        <form class="d-flex flex-row justify-content-center align-items-center" style="max-width: 1000px; margin: auto;" action="/recipe/update?id=<?= $recipe['id'] ?>" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PATCH">
             <div class="d-flex flex-row justify-content-between gap-4">
                 <div>

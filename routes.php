@@ -20,4 +20,7 @@ $router->get('/recipes', "/recipes/index.php")->only('authenticated');
 $router->get('/recipe', "/recipes/show.php");
 $router->get('/recipe/edit', "/recipes/edit.php")->only('authenticated');
 $router->delete('/recipe/delete', "/recipes/destroy.php")->only('authenticated');
-$router->patch('/recipe/patch', "/recipes/update.php")->only('authenticated');
+$router->patch('/recipe/update', "/recipes/update.php")->only('authenticated');
+
+
+$router->patch('/recipe/favourite', "/favourites/store.php")->only('authenticated');

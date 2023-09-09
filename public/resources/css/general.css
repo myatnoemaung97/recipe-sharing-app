@@ -47,20 +47,5 @@ main {
     display: inline;
 }
 
-.full-heart-button {
-    display: none;
-}
-
-.favourite-tab:hover .empty-heart-button{
-    display: none;
-}
-
-.favourite-tab:hover .full-heart-button{
-    display: inline;
-}
-
-.full-heart-icon, .empty-heart-icon {
-    color: #FF0000;
-}
 
 

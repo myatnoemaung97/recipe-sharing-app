@@ -36,11 +36,11 @@
                     <ul class="text-dark nav nav-underline nav-fill" style="width: 100%;">
                         <?php if (isset($_SESSION['user'])) : ?>
                             <li class="favourite-tab nav-item">
-                                <button class="empty-heart-button nav-link" onclick="unfavourite(<?= $recipe['id'] ?>)">
+                                <button id="unfavourite-button" class="<?= $isFavourite === false ? 'default-show' : 'default-hide' ?> nav-link" onclick="unfavourite(<?= $recipe['id'] ?>)">
                                     <i class="empty-heart-icon fa-regular fa-heart fa-lg"></i>
                                 </button>
-                                <button class="full-heart-button nav-link" onclick="favourite(<?= $recipe['id'] ?>)">
-                                    <i class="full-heart-icon fa-solid fa-heart fa-lg" title="Add to favourites"></i>
+                                <button id="favourite-button" class="<?= $isFavourite === false ? 'default-hide' : 'default-show' ?> unfavourite-button nav-link" onclick="favourite(<?= $recipe['id'] ?>)" title="Add to favourites">
+                                    <i class="full-heart-icon fa-solid fa-heart fa-lg"></i>
                                 </button>
                             </li>
                             <li class="rating-tab nav-item">

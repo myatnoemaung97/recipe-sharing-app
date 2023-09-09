@@ -1,0 +1,15 @@
+.default-hide {
+    display: none;
+}
+
+.favourite-tab:hover .default-show{
+    display: none;
+}
+
+.favourite-tab:hover .default-hide{
+    display: inline;
+}
+
+.full-heart-icon, .empty-heart-icon {
+    color: #FF0000;
+}

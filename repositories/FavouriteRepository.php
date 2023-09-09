@@ -23,4 +23,20 @@ class FavouriteRepository
     public function findByRecipeId($id) {
 
     }
+
+    public function findByUserIdAndRecipeId($userId, $recipeId) {
+        $statement = "SELECT * FROM favourites WHERE user_id=:userId AND recipe_id=:recipeId";
+        return $this->db->query($statement, [
+            'userId' => $userId,
+            'recipeId' => $recipeId
+        ])->fetch();
+    }
+
+    public function save($recipeId) {
+        $statement = "INSERT INTO favourites(user_id, recipe_id) VALUES (:userId, :recipeId)";
+        $this->db->query($statement, [
+            'userId' => $_SESSION['user']['id'],
+            'recipeId' => $recipeId
+        ]);
+    }
 }
