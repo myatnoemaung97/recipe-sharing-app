@@ -57,13 +57,25 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="d-flex flex-row justify-content-center gap-2">
-                                                    <div class="star1">
+                                                    <div class="star1" onmouseover="star1()" onmouseleave="star0()">
                                                         <i id="star1-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
-                                                        <i id="star1-full" class="star two-stars hide fa-solid fa-star fa-2xl ms-1"></i>
+                                                        <i id="star1-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
                                                     </div>
-                                                    <div class="star2" onmouseover="star2()">
+                                                    <div class="star2" onmouseover="star2()" onmouseleave="star0()">
                                                         <i id="star2-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
-                                                        <i id="star2-full" class="star two-stars hide fa-solid fa-star fa-2xl ms-1"></i>
+                                                        <i id="star2-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
+                                                    </div>
+                                                    <div class="star3" onmouseover="star3()" onmouseleave="star0()">
+                                                        <i id="star3-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
+                                                        <i id="star3-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
+                                                    </div>
+                                                    <div class="star4" onmouseover="star4()" onmouseleave="star0()">
+                                                        <i id="star4-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
+                                                        <i id="star4-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
+                                                    </div>
+                                                    <div class="star5" onmouseover="star5()" onmouseleave="star0()">
+                                                        <i id="star5-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
+                                                        <i id="star5-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,5 +140,4 @@
             </div>
         </div>
     </main>
-    <script src="/resources/js/recipe.js"></script>
 </body>
