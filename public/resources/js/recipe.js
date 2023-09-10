@@ -116,3 +116,21 @@ function unfavourite(recipeId) {
             }
         });
 }
+
+function star2() {
+    const star1Empty = document.getElementById(`star1-empty`);
+    const star1Full = document.getElementById(`star1-full`);
+    const star2Empty = document.getElementById(`star2-empty`);
+    const star2Full = document.getElementById(`star2-full`);
+
+    star1Empty.classList.remove('show');
+    star1Empty.classList.add('hide');
+    star1Full.classList.remove('hide');
+    star1Full.classList.add('show');
+
+    star2Empty.classList.remove('show');
+    star2Empty.classList.add('hide');
+    star2Full.classList.remove('hide');
+    star2Full.classList.add('show');
+
+}

@@ -43,11 +43,37 @@
                                     <i class="full-heart-icon fa-solid fa-heart fa-lg"></i>
                                 </button>
                             </li>
-                            <li class="rating-tab nav-item">
-                                <button class="nav-link text-black">
+                            <li class="rating-tab nav-item" title="Rate this recipe">
+                                <button class="nav-link text-black" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <span class="fs-6">My Rating</span>
-                                    <i class="text-warning fa-regular fa-star fa-lg"></i>
+                                    <i class="star fa-solid fa-star fa-lg ms-1"></i>
                                 </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Rate this recipe</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="d-flex flex-row justify-content-center gap-2">
+                                                    <div class="star1">
+                                                        <i id="star1-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
+                                                        <i id="star1-full" class="star two-stars hide fa-solid fa-star fa-2xl ms-1"></i>
+                                                    </div>
+                                                    <div class="star2" onmouseover="star2()">
+                                                        <i id="star2-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
+                                                        <i id="star2-full" class="star two-stars hide fa-solid fa-star fa-2xl ms-1"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-success">Rate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         <?php endif; ?>
                         <li class="info-tab nav-item">
@@ -63,12 +89,12 @@
                         <div class="d-flex flex-column gap-1 mb-3">
                             <p class="fw-semibold fs-3"><?= htmlspecialchars($recipe['name']) ?></p>
                             <div class="d-flex flex-row">
-                                <div class="me-2" style="color: #FFD700;">
-                                    <i class="fa-solid fa-star fa-xl"></i>
-                                    <i class="fa-solid fa-star fa-xl"></i>
-                                    <i class="fa-solid fa-star fa-xl"></i>
-                                    <i class="fa-solid fa-star fa-xl"></i>
-                                    <i class="fa-solid fa-star fa-xl"></i>
+                                <div class="me-2">
+                                    <i class="star fa-solid fa-star fa-xl"></i>
+                                    <i class="star fa-solid fa-star fa-xl"></i>
+                                    <i class="star fa-solid fa-star fa-xl"></i>
+                                    <i class="star fa-solid fa-star fa-xl"></i>
+                                    <i class="star fa-solid fa-star fa-xl"></i>
                                 </div>
                                 <div style="color: rgba(0, 0, 0, 0.7);">
                                     <i class="fa-solid fa-eye fa-lg"></i>
