@@ -1,3 +1,5 @@
+let rating = 0;
+
 function star1() {
   const star1Empty = document.getElementById(`star1-empty`);
   const star1Full = document.getElementById(`star1-full`);
@@ -20,18 +22,18 @@ function star1() {
   star2Full.classList.remove('show');
   star2Full.classList.add('hide');
 
-  star3Empty.classList.remove('show');
-  star3Empty.classList.add('hide');
+  star3Empty.classList.remove('hide');
+  star3Empty.classList.add('show');
   star3Full.classList.remove('show');
   star3Full.classList.add('hide');
 
-  star4Empty.classList.remove('show');
-  star4Empty.classList.add('hide');
+  star4Empty.classList.remove('hide');
+  star4Empty.classList.add('show');
   star4Full.classList.remove('show');
   star4Full.classList.add('hide');
 
-  star5Empty.classList.remove('show');
-  star5Empty.classList.add('hide');
+  star5Empty.classList.remove('hide');
+  star5Empty.classList.add('show');
   star5Full.classList.remove('show');
   star5Full.classList.add('hide');
 }
@@ -225,3 +227,33 @@ function star0() {
   star5Full.classList.remove('show');
   star5Full.classList.add('hide');
 }
+
+function starClicked(stars) {
+  for (let i = 1; i <= 5; i++) {
+    let element = document.querySelector(`.star${i}`);
+    element.removeAttribute("onmouseleave");
+  }
+  rating = stars;
+}
+
+function rate(recipeId) {
+  const formData = new FormData();
+
+  formData.append('recipeId', recipeId);
+  formData.append('rating', rating);
+
+  fetch("/recipe/rate", {
+    method: "POST",
+    body: formData
+  });
+
+  closeModal();
+}
+
+function closeModal() {
+  var modal = document.getElementById('exampleModal');
+  var modalInstance = bootstrap.Modal.getInstance(modal);
+  modalInstance.hide();
+}
+
+

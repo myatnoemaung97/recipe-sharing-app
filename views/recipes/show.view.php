@@ -40,7 +40,7 @@
                                     <i class="empty-heart-icon fa-regular fa-heart fa-lg"></i>
                                 </button>
                                 <button id="unfav-btn" class="<?= $isFavourite === true ? 'show' : 'hide' ?> nav-link" onclick="unfavourite(<?= $recipe['id'] ?>)" title="Remove from favourites">
-                                    <i class="full-heart-icon fa-solid fa-heart fa-lg"></i>
+                                    <i class="full-heart-icon fa-solid fa-heart fa-xl"></i>
                                 </button>
                             </li>
                             <li class="rating-tab nav-item" title="Rate this recipe">
@@ -57,23 +57,23 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="d-flex flex-row justify-content-center gap-2">
-                                                    <div class="star1" onmouseover="star1()" onmouseleave="star0()">
+                                                    <div class="star1" onmouseover="star1()" onmouseleave="star0()" onclick="starClicked(1)">
                                                         <i id="star1-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
                                                         <i id="star1-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
                                                     </div>
-                                                    <div class="star2" onmouseover="star2()" onmouseleave="star0()">
+                                                    <div class="star2" onmouseover="star2()" onmouseleave="star0()" onclick="starClicked(2)">
                                                         <i id="star2-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
                                                         <i id="star2-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
                                                     </div>
-                                                    <div class="star3" onmouseover="star3()" onmouseleave="star0()">
+                                                    <div class="star3" onmouseover="star3()" onmouseleave="star0()" onclick="starClicked(3)">
                                                         <i id="star3-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
                                                         <i id="star3-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
                                                     </div>
-                                                    <div class="star4" onmouseover="star4()" onmouseleave="star0()">
+                                                    <div class="star4" onmouseover="star4()" onmouseleave="star0()" onclick="starClicked(4)">
                                                         <i id="star4-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
                                                         <i id="star4-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
                                                     </div>
-                                                    <div class="star5" onmouseover="star5()" onmouseleave="star0()">
+                                                    <div class="star5" onmouseover="star5()" onmouseleave="star0()" onclick="starClicked(5)">
                                                         <i id="star5-empty" class="star empty fa-regular fa-star fa-2xl ms-1"></i>
                                                         <i id="star5-full" class="star hide fa-solid fa-star fa-2xl ms-1"></i>
                                                     </div>
@@ -81,7 +81,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-success">Rate</button>
+                                                <button type="button" class="btn btn-success" onclick="rate(<?= $recipe['id'] ?>)">Rate</button>
                                             </div>
                                         </div>
                                     </div>
