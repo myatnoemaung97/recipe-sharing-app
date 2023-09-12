@@ -1,9 +1,13 @@
 <?php
 
-use repositories\RecipeRepository;
+use Http\services\SearchService;
 
-$recipeRepo = new RecipeRepository();
+$searchService = new SearchService();
 
-$recipeRepo->findByParams($_GET);
+$params = getParams($_GET);
 
-view('search.view.php');
+$recipes = $searchService->searchByParams($params);
+
+view('/search/index.view.php', [
+    'recipes' => $recipes
+]);

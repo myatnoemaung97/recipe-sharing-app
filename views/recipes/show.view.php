@@ -102,9 +102,11 @@
                             <p class="fw-semibold fs-3"><?= htmlspecialchars($recipe['name']) ?></p>
                             <div class="d-flex flex-row">
                                 <div class="me-2">
-                                    <?php for ($i = 1; $i <= $recipe['rating']; $i++) : ?>
-                                        <i class="star fa-solid fa-star fa-xl"></i>
-                                    <?php endfor; ?>
+                                    <?php if (isset($recipe['rating'])) : ?>
+                                        <?php for ($i = 1; $i <= $recipe['rating']; $i++) : ?>
+                                            <i class="star fa-solid fa-star fa-xl"></i>
+                                        <?php endfor; ?>
+                                    <?php endif; ?>
                                 </div>
                                 <div style="color: rgba(0, 0, 0, 0.7);">
                                     <i class="fa-solid fa-eye fa-lg"></i>
@@ -132,14 +134,14 @@
                     </div>
 
                 </div>
-                <div class="d-flex flex-row justify-content-between">
-                    <p class="fw-semibold"><span id="comment-count"><?= count($comments) ?></span> Comments</p>
-                    <?php if (!loggedIn()) : ?>
-                        <a class="" href="/login">Login</a>
-                    <?php endif; ?>
-                </div>
-                <hr class="mb-3" style="margin-top: -5px;">
                 <div class="comments hide" id="comments-section">
+                    <div class="d-flex flex-row justify-content-between">
+                        <p class="fw-semibold"><span id="comment-count"><?= count($comments) ?></span> Comments</p>
+                        <?php if (!loggedIn()) : ?>
+                            <a class="" href="/login">Login</a>
+                        <?php endif; ?>
+                    </div>
+                    <hr class="mb-3" style="margin-top: -5px;">
                     <div>
                         <?php if (loggedIn()) : ?>
                             <textarea id="comment-input" class="form-control mb-1" placeholder="Leave a comment about the recipe..."></textarea>
