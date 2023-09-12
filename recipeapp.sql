@@ -7,6 +7,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -14,13 +15,15 @@ CREATE TABLE `comments` (
   `comment` text NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
+  `user_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `recipe_id` (`recipe_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE IF EXISTS `favourites`;
 CREATE TABLE `favourites` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -32,8 +35,9 @@ CREATE TABLE `favourites` (
   CONSTRAINT `favourites_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `favourites_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `favourites_ibfk_4` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE IF EXISTS `ratings`;
 CREATE TABLE `ratings` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -44,8 +48,9 @@ CREATE TABLE `ratings` (
   KEY `recipe_id` (`recipe_id`),
   CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE IF EXISTS `recipes`;
 CREATE TABLE `recipes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -60,12 +65,13 @@ CREATE TABLE `recipes` (
   `created` datetime NOT NULL,
   `ingredients` text NOT NULL,
   `updated` datetime DEFAULT NULL,
-  `ratings` int DEFAULT NULL,
+  `rating` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `recipes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -77,7 +83,17 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
+INSERT INTO `comments` (`id`, `user_id`, `recipe_id`, `comment`, `created`, `updated`, `user_name`) VALUES
+(4, 23, 16, 'Yummy', '2023-09-11 14:59:47', NULL, 'myat');
+INSERT INTO `comments` (`id`, `user_id`, `recipe_id`, `comment`, `created`, `updated`, `user_name`) VALUES
+(5, 24, 16, 'Delicious', '2023-09-11 15:00:23', NULL, 'noe');
+INSERT INTO `comments` (`id`, `user_id`, `recipe_id`, `comment`, `created`, `updated`, `user_name`) VALUES
+(30, 25, 7, 'Nice', '2023-09-12 13:15:51', NULL, 'mike');
+INSERT INTO `comments` (`id`, `user_id`, `recipe_id`, `comment`, `created`, `updated`, `user_name`) VALUES
+(31, 25, 7, 'mite tl', '2023-09-12 13:17:11', NULL, 'mike'),
+(32, 25, 16, 'itadakimasu', '2023-09-12 13:46:40', NULL, 'mike'),
+(33, 25, 16, 'arigatou', '2023-09-12 13:47:14', NULL, 'mike'),
+(35, 25, 16, 'Tasty', '2023-09-12 14:02:18', NULL, 'mike');
 
 INSERT INTO `favourites` (`id`, `user_id`, `recipe_id`) VALUES
 (11, 23, 10);
@@ -86,20 +102,38 @@ INSERT INTO `favourites` (`id`, `user_id`, `recipe_id`) VALUES
 INSERT INTO `favourites` (`id`, `user_id`, `recipe_id`) VALUES
 (25, 23, 9);
 INSERT INTO `favourites` (`id`, `user_id`, `recipe_id`) VALUES
-(26, 23, 12);
+(26, 23, 12),
+(30, 23, 11),
+(52, 25, 7),
+(53, 25, 16);
 
+INSERT INTO `ratings` (`id`, `user_id`, `recipe_id`, `rating`) VALUES
+(6, 23, 12, 4);
+INSERT INTO `ratings` (`id`, `user_id`, `recipe_id`, `rating`) VALUES
+(7, 24, 12, 2);
+INSERT INTO `ratings` (`id`, `user_id`, `recipe_id`, `rating`) VALUES
+(8, 24, 11, 4);
+INSERT INTO `ratings` (`id`, `user_id`, `recipe_id`, `rating`) VALUES
+(9, 25, 12, 5),
+(10, 25, 11, 5),
+(11, 23, 10, 3),
+(12, 25, 16, 3),
+(13, 25, 7, 5),
+(14, 25, 10, 5);
 
-
-INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `ratings`) VALUES
-(7, 'asdgsg', 32, 1, 'rgrrdghdfg', 'abdrhbdghdrhgd', 3, '/resources/uploads/Simply-Recipes-Huevos-Rancheros-LEAD-3-35bb4aa811a044d0b06cc9bbbe8687df.jpg', 11, 23, '2023-09-07 13:35:03', 'werewrwerwer', '2023-09-08 17:00:20', NULL);
-INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `ratings`) VALUES
-(9, 'Ratatoullie', 12, 3, 'Skibi di', 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 1, '/resources/uploads/Baked-Zucchini_-10.jpg', 43, 23, '2023-09-07 14:02:43', 'rat meat - 1g,salad - 3', '2023-09-09 10:25:54', NULL);
-INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `ratings`) VALUES
-(10, 'Pizza', 2, 3, 'sdfsdfsd', 'gfhgjkghkjgh', 2, '/resources/uploads/images.jpg', 19, 23, '2023-09-07 14:29:29', 'salt - 1tsp', '2023-09-08 17:00:44', NULL);
-INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `ratings`) VALUES
-(11, 'fasdfsdf', 1, 2, 'asfgyuj56iu', 'oieefu98uf98sdafoisdjfoisdjfusjdf8hsdhfisdhfiuhsdifjisdjf', 4, '/resources/uploads/download.jpg', 14, 28, '2023-09-07 14:51:40', 'werwterter', NULL, NULL),
-(12, '3rwr', 2, 3, 'wettert', 'sfsdgergtertgret', 2, '/resources/uploads/Simply-Recipes-Huevos-Rancheros-LEAD-3-35bb4aa811a044d0b06cc9bbbe8687df.jpg', 60, 28, '2023-09-07 14:52:48', 'drgrertg', NULL, NULL),
-(13, 'fojsidfj', 2, 2, 's9fjdgjfdgfiduhgfidhgfdgfdjgofdjgofdjgofdjgofdijgofdjg sodgffidjfsodifjoidj sdfigfhfdigjidgsdf osdfjosfjosjfosdjfj o', 'lasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfj', 2, '/resources/uploads/Baked-Zucchini_-10.jpg', 35, 28, '2023-09-07 16:14:45', 'osjdfoj,esfsef,sdfsdf,sdfsdf,sfsdf,sdfsdf,xvxcv,sdfsfd,sdfsf,sdfsdf,sdad,jtyity,xvcxv', NULL, NULL);
+INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `rating`) VALUES
+(7, 'asdgsg', 32, 1, 'rgrrdghdfg', 'abdrhbdghdrhgd', 3, '/resources/uploads/Simply-Recipes-Huevos-Rancheros-LEAD-3-35bb4aa811a044d0b06cc9bbbe8687df.jpg', 17, 23, '2023-09-07 13:35:03', 'werewrwerwer', '2023-09-08 17:00:20', 5);
+INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `rating`) VALUES
+(9, 'Ratatoullie', 12, 3, 'Skibi di', 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 1, '/resources/uploads/Baked-Zucchini_-10.jpg', 47, 23, '2023-09-07 14:02:43', 'rat meat - 1g,salad - 3', '2023-09-09 10:25:54', NULL);
+INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `rating`) VALUES
+(10, 'Pizza', 2, 3, 'sdfsdfsd', 'gfhgjkghkjgh', 2, '/resources/uploads/images.jpg', 44, 23, '2023-09-07 14:29:29', 'salt - 1tsp', '2023-09-08 17:00:44', 4);
+INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `rating`) VALUES
+(11, 'fasdfsdf', 1, 2, 'asfgyuj56iu', 'oieefu98uf98sdafoisdjfoisdjfusjdf8hsdhfisdhfiuhsdifjisdjf', 4, '/resources/uploads/download.jpg', 73, 28, '2023-09-07 14:51:40', 'werwterter', NULL, 0),
+(12, '3rwr', 2, 3, 'wettert', 'sfsdgergtertgret', 2, '/resources/uploads/Simply-Recipes-Huevos-Rancheros-LEAD-3-35bb4aa811a044d0b06cc9bbbe8687df.jpg', 104, 28, '2023-09-07 14:52:48', 'drgrertg', NULL, 4),
+(13, 'fojsidfj', 2, 2, 's9fjdgjfdgfiduhgfidhgfdgfdjgofdjgofdjgofdjgofdijgofdjg sodgffidjfsodifjoidj sdfigfhfdigjidgsdf osdfjosfjosjfosdjfj o', 'lasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfj', 2, '/resources/uploads/Baked-Zucchini_-10.jpg', 58, 28, '2023-09-07 16:14:45', 'osjdfoj,esfsef,sdfsdf,sdfsdf,sfsdf,sdfsdf,xvxcv,sdfsfd,sdfsf,sdfsdf,sdad,jtyity,xvcxv', NULL, NULL),
+(16, 'Grimace Shake', 5, 2, 'wmji,kjmihnuedsrcbgh', 'thjukjygjhgnfghfgfsd', 4, '/resources/uploads/16354-easy-meatloaf-mfs-74-3d9368335f824e31ab2564932cc26fa3.jpg', 164, 25, '2023-09-11 11:35:57', 'fasdfasdf,iyuiyuiyuiyui', NULL, 3),
+(17, 'poiuiopoi', 2, 2, 'piolikijmhjmkuikuik', 'ikhjmyjhmyukyuiyui\'fajshdfiuhasf\"\"afhiusiahsifuiasdfasf', 2, '/resources/uploads/cucumber-sandwich-eddcc95811f5426094ea5dbea6a6b026.jpg', 46, 25, '2023-09-11 11:36:24', '5uytjhgj', '2023-09-11 13:20:12', NULL),
+(18, 'qw4rwesfsd', 3, 3, 'sdfsdfds', '<h1>Do this</h1>', 2, '/resources/uploads/Simply-Recipes-DIY-Macaroni-Cheese-LEAD-02-0fc3a4f066b84febb5dcf6a697eb2a0b.jpg', 2, 25, '2023-09-12 13:40:23', 'asdfasfd,asdfasdf', NULL, NULL);
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `is_admin`, `created`, `updated`) VALUES
 (1, 'fasf', 'sdfkj@jfsdlkjcom', 'sdlfjksdjf', 0, '2023-09-04 15:25:55', NULL);
