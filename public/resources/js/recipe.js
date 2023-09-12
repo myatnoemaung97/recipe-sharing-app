@@ -3,19 +3,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const commentsTab = document.querySelector(".comments-tab");
     const infoSection = document.getElementById("info-section");
     const commentsSection = document.getElementById("comments-section");
+    const infoButton = document.getElementById("info-button");
+    const commentsButton = document.getElementById("comments-button");
 
     infoTab.addEventListener("click", function () {
-        infoTab.classList.add("active");
-        commentsTab.classList.remove("active");
         infoSection.style.display = "block";
         commentsSection.style.display = "none";
+        commentsSection.classList.remove("hide");
+        commentsButton.classList.remove("active");
+        infoButton.classList.add("active");
     });
 
     commentsTab.addEventListener("click", function () {
-        commentsTab.classList.add("active");
-        infoTab.classList.remove("active");
         commentsSection.style.display = "block";
         infoSection.style.display = "none";
+        commentsSection.classList.remove("hide");
+        infoButton.classList.remove("active");
+        commentsButton.classList.add("active");
     });
 });
 
@@ -71,9 +75,8 @@ function favourite(recipeId) {
     const formData = new FormData();
 
     formData.append('recipeId', recipeId);
-    formData.append('_method', 'PATCH');
 
-    fetch("/recipe/favourite", {
+    fetch("/favourites", {
         method: "POST",
         body: formData
     })
@@ -98,7 +101,7 @@ function unfavourite(recipeId) {
     formData.append('recipeId', recipeId);
     formData.append('_method', 'DELETE');
 
-    fetch("/recipe/favourite", {
+    fetch("/favourites", {
         method: "POST",
         body: formData
     })

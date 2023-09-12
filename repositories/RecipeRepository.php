@@ -64,6 +64,9 @@ class RecipeRepository
         $statement = 'UPDATE recipes SET  ';
 
         foreach ($attributes as $key => $value) {
+            if ($key === 'id') {
+                continue;
+            }
             $statement = $statement . $key . '=:' . $key . ',';
         }
         $statement = substr($statement, 0, -1);
@@ -71,7 +74,6 @@ class RecipeRepository
         $statement = $statement . ' WHERE id=:id';
 
         $this->db->query($statement, $attributes);
-
     }
 
     public function updateView($id) {
@@ -82,5 +84,36 @@ class RecipeRepository
             'id' => $id
         ];
         $this->updateRecipe($attributes);
+    }
+
+    public function updateRating($id, $rating) {
+        $attributes = [
+            'rating' => $rating,
+            'id' => $id
+        ];
+        $this->updateRecipe($attributes);
+    }
+
+    public function findByParams($params = []) {
+        $statement = "SELECT * FROM recipes";
+
+        if (!empty($params)) {
+            $statement = $statement . " WHERE ";
+            foreach ($params as $key => $value) {
+                if ($key === 'name') {
+                    $statement = $statement . $key . " LIKE " . ":" . $key . " AND ";
+                    continue;
+                }
+                if ($key === 'time') {
+                    $statement = $statement . $key . "<" . ":" . $key . " AND ";
+                    continue;
+                }
+                $statement = $statement . $key . "=" . ":" . $key . " AND ";
+            }
+        }
+
+        $statement = substr($statement, 0, -5);
+
+        dd($statement);
     }
 }

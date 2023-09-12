@@ -105,3 +105,7 @@ function csvToArray($csv) {
     return explode(',', $csv);
 }
 
+function loggedIn() {
+    return isset($_SESSION['user']);    
+}
+

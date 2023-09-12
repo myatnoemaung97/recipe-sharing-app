@@ -37,4 +37,11 @@ class RatingRepository
             'id' => $id
         ]);
     }
+
+    public function findByRecipeId($recipeId) {
+        $statement = "SELECT rating FROM ratings WHERE recipe_id = :recipeId";
+        return $this->db->query($statement, [
+              'recipeId' => $recipeId
+              ])->fetchAll();
+    }
 }

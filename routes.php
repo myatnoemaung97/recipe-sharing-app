@@ -22,8 +22,15 @@ $router->get('/recipe/edit', "/recipes/edit.php")->only('authenticated');
 $router->delete('/recipe/delete', "/recipes/destroy.php")->only('authenticated');
 $router->patch('/recipe/update', "/recipes/update.php")->only('authenticated');
 
-$router->patch('/recipe/favourite', "/favourites/store.php")->only('authenticated');
-$router->delete('/recipe/favourite', "/favourites/destroy.php")->only('authenticated');
+$router->post('/favourites', "/favourites/store.php")->only('authenticated');
+$router->delete('/favourites', "/favourites/destroy.php")->only('authenticated');
 $router->get('/recipes/favourites', "/favourites/index.php")->only('authenticated');
 
-$router->post('/recipe/rate', "/ratings/store.php")->only('authenticated');
+$router->post('/ratings', "/ratings/store.php")->only('authenticated');
+
+$router->post('/comments', "/comments/store.php")->only('authenticated');
+$router->delete('/comments', "/comments/destroy.php")->only('authenticated');
+$router->patch('/comment', "/comments/update.php")->only('authenticated');
+
+$router->get('/search', "/search/index.php")->only('authenticated');
+

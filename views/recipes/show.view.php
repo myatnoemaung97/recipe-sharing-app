@@ -43,10 +43,10 @@
                                     <i class="full-heart-icon fa-solid fa-heart fa-xl"></i>
                                 </button>
                             </li>
-                            <li class="rating-tab nav-item" title="Rate this recipe">
-                                <button class="nav-link text-black" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <span class="fs-6">My Rating</span>
-                                    <i class="star fa-solid fa-star fa-lg ms-1"></i>
+                            <li class="rating-tab nav-item">
+                                <button class="nav-link text-black" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Rate this recipe">
+                                    <span class="fs-6">My Rating - <span id="userRating" class="fw-semibold"><?= $userRating ?? '' ?></span></span>
+                                    <i class="star fa-solid fa-star fa-lg"></i>
                                 </button>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -89,10 +89,10 @@
                             </li>
                         <?php endif; ?>
                         <li class="info-tab nav-item">
-                            <button class="nav-link active">Info</button>
+                            <button id='info-button' class="nav-link active">Info</button>
                         </li>
                         <li class="comments-tab nav-item">
-                            <button class="nav-link"><span class="text-black">Comments</span></button>
+                            <button id="comments-button" class="nav-link"><span class="text-black">Comments</span></button>
                         </li>
                     </ul>
                 </div>
@@ -102,11 +102,9 @@
                             <p class="fw-semibold fs-3"><?= htmlspecialchars($recipe['name']) ?></p>
                             <div class="d-flex flex-row">
                                 <div class="me-2">
-                                    <i class="star fa-solid fa-star fa-xl"></i>
-                                    <i class="star fa-solid fa-star fa-xl"></i>
-                                    <i class="star fa-solid fa-star fa-xl"></i>
-                                    <i class="star fa-solid fa-star fa-xl"></i>
-                                    <i class="star fa-solid fa-star fa-xl"></i>
+                                    <?php for ($i = 1; $i <= $recipe['rating']; $i++) : ?>
+                                        <i class="star fa-solid fa-star fa-xl"></i>
+                                    <?php endfor; ?>
                                 </div>
                                 <div style="color: rgba(0, 0, 0, 0.7);">
                                     <i class="fa-solid fa-eye fa-lg"></i>
@@ -134,8 +132,45 @@
                     </div>
 
                 </div>
-                <div class="comments" id="comments-section">
-
+                <div class="d-flex flex-row justify-content-between">
+                    <p class="fw-semibold"><span id="comment-count"><?= count($comments) ?></span> Comments</p>
+                    <?php if (!loggedIn()) : ?>
+                        <a class="" href="/login">Login</a>
+                    <?php endif; ?>
+                </div>
+                <hr class="mb-3" style="margin-top: -5px;">
+                <div class="comments hide" id="comments-section">
+                    <div>
+                        <?php if (loggedIn()) : ?>
+                            <textarea id="comment-input" class="form-control mb-1" placeholder="Leave a comment about the recipe..."></textarea>
+                            <p id="error-message" class="hide" style="font-size: 14px;"><span id="message"></span></p>
+                            <div class="text-end">
+                                <button class="btn btn-sm btn-success mb-2" onclick="comment(<?= $recipe['id'] ?>)">Comment</button>
+                            </div>
+                        <?php endif; ?>
+                        <div id="comments">
+                            <?php foreach ($comments as $key => $comment) : ?>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <div class="lh-1">
+                                        <p class="fw-bold text-success" style="font-size: 18px;"><?= $comment['user_name'] ?></p>
+                                        <p style="margin-top: -10px; font-size: 12px; color: rgba(0, 0, 0, 0.7);"><?= $comment['created'] ?></p>
+                                        <p style="font-size: 14px;"><?= $comment['comment'] ?></p>
+                                    </div>
+                                    <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
+                                        <div>
+                                            <i class="pointer-cursor fa-regular fa-pen-to-square me-2" title="Edit comment" onclick="editComment(<?= $comment['id'] ?>)"></i>
+                                            <i class="pointer-cursor fa-solid fa-trash" title="Delete commment" onclick="deleteComment(<?= $comment['id'] ?>, <?= $recipe['id'] ?>)"></i>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                                <div id="comment-edit<?= $comment['id'] ?>" class="hide">
+                                    <textarea id="edit-input<?= $comment['id'] ?>" class="form-control mb-2" placeholder="Leave a comment about the recipe..."><?= $comment['comment'] ?></textarea>
+                                    <button class="btn btn-sm btn-success" onclick="updateComment(<?= $comment['id'] ?>, <?= $recipe['id'] ?>)">Save</button>
+                                </div>
+                                <hr>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

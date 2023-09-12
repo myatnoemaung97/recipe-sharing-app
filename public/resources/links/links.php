@@ -9,6 +9,7 @@
 
 <script src="/resources/js/recipe.js"></script>
 <script src="/resources/js/rating.js"></script>
+<script src="/resources/js/comment.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

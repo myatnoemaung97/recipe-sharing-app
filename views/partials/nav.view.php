@@ -20,7 +20,7 @@
                             <li><a class="dropdown-item" href="/recipes?id=<?= $_SESSION['user']['id'] ?>">My Recipes</a></li>
                             <li><a class="dropdown-item" href="/recipes/create">Create New Recipe</a></li>
                             <li><a class="dropdown-item" href="/recipes/favourites">Favourites</a></li>
-                            <li><a class="dropdown-item" href="#">Browse Recipes</a></li>
+                            <li><a class="dropdown-item" href="/search">Browse Recipes</a></li>
                         </ul>
                     </li>
                 </ul>
