@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/resources/css/general.css">
 <link rel="stylesheet" href="/resources/css/sidebar.css">
 <link rel="stylesheet" href="/resources/css/recipe.css">
+<link rel="stylesheet" href="/resources/css/search.css">
 
 <script src="/resources/js/recipe.js"></script>
 <script src="/resources/js/rating.js"></script>

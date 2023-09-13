@@ -13,40 +13,58 @@ class SearchService
         $this->recipeRepo = new RecipeRepository();
     }
 
-    public function searchByParams($params) {
-
-        return $this->recipeRepo->findByParams($this->buildQuery($params), $params);
+    public function searchByParams($params, $order = '') {
+        //dd($this->buildQuery($params, $order));
+        return $this->recipeRepo->findByParams($this->buildQuery($params, $order), array_values($params));
     }
 
-    private function buildQuery($params) {
+    private function buildQuery($params, $order = '') {
         $statement = "SELECT * FROM recipes";
 
-        $statement = $statement . " WHERE ";
+        if (empty($params)) {
+            return $statement;
+        }
+
+        $statement = $this->bindParams($statement, $params);
+        $statement = $this->bindOrder($statement, $order);
+
+        return $statement;
+    }
+
+    private function bindOrder($query, $order) {
+        $query .= " ORDER BY $order";
+        if ($order === 'created') {
+            return $query . ' ASC';
+        }
+        return $query . ' DESC';
+    }
+
+    private function bindParams($query, $params) {
+        $query .=  ' WHERE ';
+
         foreach ($params as $key => $value) {
 
             if ($key === 'name') {
-                $statement = $statement . $key . " LIKE " . ":" . $key . " AND ";
+                $query .= $key . " LIKE ?" . " AND ";
                 continue;
             }
             if ($key === 'time') {
-                $statement = $statement . $key . "<" . ":" . $key . " AND ";
+                $query .= $key . "< ?" . " AND ";
                 continue;
             }
 
             if ($key === 'difficulty') {
                 if ($value == 0) {
-                    $statement = $statement . $key . '>' . ':' . $key . ' AND ';
+                    $query .= $key . '> ?' . ' AND ';
                     continue;
                 }
-                $statement = $statement . $key . "=" . ":" . $key . " AND ";
+                $query .= $key . "= ?" . " AND ";
                 continue;
             }
 
-            $statement = $statement . $key . "=" . ":" . $key . " AND ";
+            $query .= $key . "= ?" . " AND ";
         }
 
-
-        return substr($statement, 0, -5);
+        return substr($query, 0, -5);
     }
-
 }

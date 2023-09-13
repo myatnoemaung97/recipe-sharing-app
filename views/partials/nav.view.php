@@ -29,12 +29,13 @@
                         <i class="fa-solid fa-user"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/profile">My Profile</a></li>
+                        <li><a class="dropdown-item" href="/profile?id=<?= $_SESSION['user']['id'] ?>">My Profile</a></li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </div>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Quick Search" aria-label="Search">
+                <form class="d-flex" role="search" action="/search" method="GET">
+                    <input name="name" class="form-control me-2" type="search" placeholder="Quick Search" aria-label="Search">
+                    <input type="hidden" name="sort" value="created">
                     <button class="btn btn-success" type="submit">Search</button>
                 </form>
             </div>

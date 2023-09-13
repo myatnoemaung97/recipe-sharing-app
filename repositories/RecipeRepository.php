@@ -97,4 +97,5 @@ class RecipeRepository
     public function findByParams($query, $params = []) {
         return $this->db->query($query, $params)->fetchAll();
     }
+
 }

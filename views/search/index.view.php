@@ -15,8 +15,8 @@
   </header>
   <main>
     <div class="content">
-      <div class="text-white" style="height: 220px; margin-top: -13px; background-color: #636161;">
-        <p class="slogan text-black mb-4 fs-4">Share, Savor, Swap Recipes Together</p>
+      <div class="text-white px-2" style="height: 220px; margin-top: -13px; background-color: #b31914;">
+        <p class="slogan text-black pt-2 mb-3 fs-4">Share, Savor, Swap Recipes Together</p>
         <div class="d-flex justify-content-center">
           <form id="search-form" action="/search" method="GET">
             <div class="d-flex flex-column mb-2 gap-1">
@@ -54,11 +54,11 @@
               </div>
 
               <div class="d-flex flex-column gap-1">
-                <label for="">Order By:</label>
-                <select class="form-select" name="" id="">
-                  <option value="">New</option>
-                  <option value="">Ratings</option>
-                  <option value="">Views</option>
+                <label for="sort">Sort By:</label>
+                <select class="form-select" name="sort" id="sort">
+                  <option value="created" selected>New</option>
+                  <option value="rating">Ratings</option>
+                  <option value="views">Views</option>
                 </select>
               </div>
 
@@ -66,7 +66,6 @@
                 <div class="flex-fill" for=""></div>
                 <button type="submit" class="btn btn-success">Search</button>
               </div>
-
             </div>
           </form>
         </div>

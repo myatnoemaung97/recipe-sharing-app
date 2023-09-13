@@ -9,7 +9,7 @@ $router->get('/logout', "/sessions/destroy.php");
 $router->get('/register', "/registration/create.php")->only('guest');
 $router->post('/register', "/registration/store.php")->only('guest');
 
-$router->get('/profile', "profile.php")->only('authenticated');
+$router->get('/profile', "/profile/index.php")->only('authenticated');
 
 $router->get('/home', "index.php")->only('authenticated');
 

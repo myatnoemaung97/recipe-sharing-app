@@ -13,7 +13,7 @@ function comment(recipeId) {
   })
     .then(response => response.json())
     .then(data => {
-      const commentsSection = document.getElementById("comments-section");
+      const commentsSection = document.getElementById("comments");
       commentsSection.innerHTML = '';
 
       data.comments.forEach(comment => {
@@ -64,7 +64,7 @@ function deleteComment(commentId, recipeId) {
   })
     .then(response => response.json())
     .then(data => {
-      const commentsSection = document.getElementById("comments-section");
+      const commentsSection = document.getElementById("comments");
       commentsSection.innerHTML = "";
 
       data.comments.forEach(comment => {
@@ -125,7 +125,7 @@ function updateComment(id, recipeId) {
     body: formData
   }).then(response => response.json())
     .then(data => {
-      const commentsSection = document.getElementById("comments-section");
+      const commentsSection = document.getElementById("comments");
       commentsSection.innerHTML = "";
 
       data.comments.forEach(comment => {

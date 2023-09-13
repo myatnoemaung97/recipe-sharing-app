@@ -19,22 +19,20 @@
                 <p class="slogan text-black mb-4 fs-4">Share, Savor, Swap Recipes Together</p>
                 <div class="recipe-image d-flex flex-column align-items-center position-relative">
                     <img id="recipe-image" class="" src="<?= $_FILES['image'] ?? $recipe['image'] ?>" alt="recipe" style="max-width: 100%; max-height: 500px;">
-                    <?php if (isset($_SESSION['user'])) : ?>
-                        <?php if ($_SESSION['user']['id'] === $recipe['user_id']) : ?>
-                            <form action="/recipe/patch?id=<?= $recipe['id'] ?>" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="_method" value="PATCH">
-                                <div class="position-absolute top-50 start-50 translate-middle">
-                                    <label for="image-upload" class="change-photo-button btn btn-success btn-sm me-2">
-                                        Change Photo
-                                    </label>
-                                    <input type="file" id="image-upload" style="display: none;" onchange="updateImagePreview()">
-                                    <button id="save-photo-button" class="save-photo-button btn btn-danger btn-sm d-none">Save Photo</button>
-                                </div>
-                            </form>
-                        <?php endif; ?>
+                    <?php if (loggedIn() && $_SESSION['user']['id'] === $recipe['user_id']) : ?>
+                        <form action="/recipe/patch?id=<?= $recipe['id'] ?>" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="_method" value="PATCH">
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <label for="image-upload" class="change-photo-button btn btn-success btn-sm me-2">
+                                    Change Photo
+                                </label>
+                                <input type="file" id="image-upload" style="display: none;" onchange="updateImagePreview()">
+                                <button id="save-photo-button" class="save-photo-button btn btn-danger btn-sm d-none">Save Photo</button>
+                            </div>
+                        </form>
                     <?php endif; ?>
                     <ul class="text-dark nav nav-underline nav-fill" style="width: 100%;">
-                        <?php if (isset($_SESSION['user'])) : ?>
+                        <?php if (loggedIn()) : ?>
                             <li class="favourite-tab nav-item">
                                 <button id="fav-btn" class="<?= $isFavourite === true ? 'hide' : 'show' ?> nav-link" onclick="favourite(<?= $recipe['id'] ?>)" title="Add to favourites">
                                     <i class="empty-heart-icon fa-regular fa-heart fa-lg"></i>
@@ -114,13 +112,11 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if (isset($_SESSION['user'])) : ?>
-                            <?php if ($_SESSION['user']['id'] === $recipe['user_id']) : ?>
-                                <div>
-                                    <a class="btn btn-success" href="/recipe/edit?id=<?= $recipe['id'] ?>">Edit Info</a>
-                                    <button class="btn btn-danger" onclick="confirmDelete(<?= $recipe['id'] ?>)">Delete Recipe</button>
-                                </div>
-                            <?php endif; ?>
+                        <?php if (loggedIn() && $_SESSION['user']['id'] === $recipe['user_id']) : ?>
+                            <div>
+                                <a class="btn btn-success" href="/recipe/edit?id=<?= $recipe['id'] ?>">Edit Info</a>
+                                <button class="btn btn-danger" onclick="confirmDelete(<?= $recipe['id'] ?>)">Delete Recipe</button>
+                            </div>
                         <?php endif; ?>
                     </div>
                     <p><?= htmlspecialchars($recipe['description']) ?></p>
@@ -158,10 +154,10 @@
                                         <p style="margin-top: -10px; font-size: 12px; color: rgba(0, 0, 0, 0.7);"><?= $comment['created'] ?></p>
                                         <p style="font-size: 14px;"><?= $comment['comment'] ?></p>
                                     </div>
-                                    <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
+                                    <?php if (loggedIn() && $comment['user_id'] === $_SESSION['user']['id']) : ?>
                                         <div>
                                             <i class="pointer-cursor fa-regular fa-pen-to-square me-2" title="Edit comment" onclick="editComment(<?= $comment['id'] ?>)"></i>
-                                            <i class="pointer-cursor fa-solid fa-trash" title="Delete commment" onclick="deleteComment(<?= $comment['id'] ?>, <?= $recipe['id'] ?>)"></i>
+                                            <i class="pointer-cursor fa-solid fa-trash" title="Delete comment" onclick="deleteComment(<?= $comment['id'] ?>, <?= $recipe['id'] ?>)"></i>
                                         </div>
                                     <?php endif; ?>
                                 </div>
