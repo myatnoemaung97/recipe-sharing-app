@@ -109,3 +109,14 @@ function loggedIn() {
     return isset($_SESSION['user']);    
 }
 
+function getParams($attributes) {
+    $array = [];
+    foreach ($attributes as $key => $value) {
+        if ($value !== '') {
+            $array[$key] = $value;
+        }
+    }
+
+    return $array;
+}
+

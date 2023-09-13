@@ -31,9 +31,11 @@
                                                 <p><i class="fa-solid fa-trophy me-1"></i><?= htmlspecialchars(intToDifficulty($recipe['difficulty'])) ?></p>
                                             </div>
                                             <div>
-                                                <?php for ($i = 1; $i <= $recipe['rating']; $i++) : ?>
-                                                    <i class="star fa-solid fa-star fa-lg"></i>
-                                                <?php endfor; ?>
+                                                <?php if(isset($recipe['rating'])) : ?>
+                                                    <?php for ($i = 1; $i <= $recipe['rating']; $i++) : ?>
+                                                        <i class="star fa-solid fa-star fa-lg"></i>
+                                                    <?php endfor; ?>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>

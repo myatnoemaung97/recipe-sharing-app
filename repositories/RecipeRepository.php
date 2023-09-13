@@ -94,26 +94,7 @@ class RecipeRepository
         $this->updateRecipe($attributes);
     }
 
-    public function findByParams($params = []) {
-        $statement = "SELECT * FROM recipes";
-
-        if (!empty($params)) {
-            $statement = $statement . " WHERE ";
-            foreach ($params as $key => $value) {
-                if ($key === 'name') {
-                    $statement = $statement . $key . " LIKE " . ":" . $key . " AND ";
-                    continue;
-                }
-                if ($key === 'time') {
-                    $statement = $statement . $key . "<" . ":" . $key . " AND ";
-                    continue;
-                }
-                $statement = $statement . $key . "=" . ":" . $key . " AND ";
-            }
-        }
-
-        $statement = substr($statement, 0, -5);
-
-        dd($statement);
+    public function findByParams($query, $params = []) {
+        return $this->db->query($query, $params)->fetchAll();
     }
 }

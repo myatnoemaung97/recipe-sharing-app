@@ -14,12 +14,12 @@ $recipeRepo->updateView($_GET['id']);
 $recipe = $recipeRepo->findById($_GET['id']);
 
 $isFavourite = false;
+$userRating = false;
 
 if (isset($_SESSION['user'])) {
     $isFavourite = (bool) $favRepo->findByUserIdAndRecipeId($_SESSION['user']['id'], $_GET['id']);
+    $userRating = $ratingRepo->findByUserIdAndRecipeId($_SESSION['user']['id'], $_GET['id']);
 }
-
-$userRating = $ratingRepo->findByUserIdAndRecipeId($_SESSION['user']['id'], $_GET['id']);
 
 $comments = $commentRepo->findByRecipeId($_GET['id']);
 
