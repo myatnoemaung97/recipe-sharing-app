@@ -26,12 +26,8 @@ if no recipe -add some recipes message
 password change
 profile pic
 delete account
-go to recipe from recipe cardt at my profile 
 delete recipe confirm have to click twice 
 form card shadow
 banned email list
-
-id, name, user_id, created, updated
 admin tables paginations
-show recipe image in table
 

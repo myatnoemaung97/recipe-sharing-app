@@ -60,6 +60,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Image</th>
                 <th scope="col">Author ID</th>
                 <th scope="col">Created</th>
                 <th scope="col">Updated</th>
@@ -70,6 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                   <td><?= $recipe['id'] ?></td>
                   <td><?= $recipe['name'] ?></td>
+                  <td><img src="<?= $recipe['image'] ?>" alt="recipe image" style="height: 75px; width: 75px"></td>
                   <td><?= $recipe['user_id'] ?></td>
                   <td><?= $recipe['created'] ?></td>
                   <td><?= $recipe['updated'] ?></td>

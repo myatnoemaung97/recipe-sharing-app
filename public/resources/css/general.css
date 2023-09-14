@@ -6,10 +6,12 @@ body {
 
 main {
     position: relative;
+    
 }
 
 .content {
     padding-top: 75px;
+    
 }
 
 .heading {

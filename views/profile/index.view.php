@@ -13,7 +13,7 @@
     <header>
         <?php require base_path('views/partials/nav.view.php') ?>
     </header>
-    <main>
+    <main class="d-flex justify-content-center align-items-center" style="height: 100vh; width: auto;">
         <div class="content container-fluid" style="max-width: 800px; background-color: #ffffcc ;">
             <h1 class="heading text-center mb-3">Profile</h1>
             <div class="d-flex flex-row justify-content-evenly align-items-center" style="width: 100%;">
@@ -37,7 +37,7 @@
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        <a class="no-underline" href="/recipe?id=">
+                        <a class="no-underline" href="/recipe?id=<?= $topRated['id'] ?>">
                             <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
                                 <h5 class="card-header heading fw-semibold">Top Rated</h5>
                                 <img src=<?= $topRated['image'] ?> class="card-img-top bg-white" alt="recipe" style="height: 210px ;">
@@ -59,7 +59,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-md-4">
-                        <a class="no-underline" href="/recipe?id=">
+                        <a class="no-underline" href="/recipe?id=<?= $mostViewed['id'] ?>">
                             <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
                                 <h5 class="card-header heading fw-semibold">Most Viewed - <?= $mostViewed['views'] ?> <i class="fa-regular fa-eye text-" style="color: rgba(0,0,0,0.4);"></i></h5>
                                 <img src=<?= $mostViewed['image'] ?> class="card-img-top bg-white" alt="recipe" style="height: 210px ;">
@@ -81,7 +81,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-md-4">
-                        <a class="no-underline" href="/recipe?id=">
+                        <a class="no-underline" href="/recipe?id=<?= $mostComments['id'] ?>">
                             <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
                                 <h5 class="card-header heading fw-semibold">Most Comments - <?= $commentsCount ?></h5>
                                 <img src=<?= $mostComments['image'] ?> class="card-img-top bg-white" alt="recipe" style="height: 210px ;">
