@@ -75,7 +75,10 @@ class ProfileService
 
         $mostComments = $this->recipeRepo->findById($mostComments);
 
-        $avgRating = $totalRatings / $ratedRecipes;
+        $avgRating = 0;
+        if ($ratedRecipes !== 0) {
+            $avgRating = $totalRatings / $ratedRecipes;
+        }
 
         $this->info = [
             'recipesCount' => count($recipes),

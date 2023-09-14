@@ -33,8 +33,8 @@ class RecipeRepository
             ]);
     }
 
-    public function findAllRecipes() {
-        $statement = 'SELECT * FROM recipes';
+    public function findAll($sort = '') {
+        $statement = "SELECT * FROM recipes ORDER BY " . (empty($sort) ? 'id' : $sort);
         return $this->db->query($statement)->fetchAll();
     }
 
@@ -78,6 +78,9 @@ class RecipeRepository
 
     public function updateView($id) {
         $recipe = $this->findById($id);
+        if (!$recipe) {
+            return;
+        }
         $views = $recipe['views'];
         $attributes = [
             'views' => $views + 1,
@@ -97,5 +100,6 @@ class RecipeRepository
     public function findByParams($query, $params = []) {
         return $this->db->query($query, $params)->fetchAll();
     }
+
 
 }

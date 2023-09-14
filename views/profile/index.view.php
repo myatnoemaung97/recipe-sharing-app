@@ -19,17 +19,21 @@
             <div class="d-flex flex-row justify-content-evenly align-items-center" style="width: 100%;">
                 <div class="d-flex flex-row justify-content-evenly align-items-center gap-3">
                     <div class="" style="width: 75px; height: 75px; border-radius: 25px; background-image: url(/resources/images/user-avatar.png); background-position: center; background-size: cover;"></div>
-                    <div class="d-flex flex-column lh-1">
+                    <div class="d-flex flex-column   lh-1">
                         <p><?= $user['name'] ?></p>
                         <p><?= $user['email'] ?></p>
+                        <a class="btn btn-sm btn-success" href="/profile/edit?id=<?= $_SESSION['user']['id']?>">Edit</a>
                     </div>
                 </div>
                 <div class="">
-                    <p>Total Recipes - <?= $info['recipesCount'] ?></p>
-                    <p>Total Views - <?= $info['totalViews'] ?></p>
-                    <p>Average rating - <?= $info['avgRating'] ?></p>
+                    <p>Total Recipes - <?= isset($info['recipesCount']) ? $info['recipesCount'] : 0?></p>
+                    <p>Total Views - <?= isset($info['totalViews']) ? $info['totalViews'] : 0 ?></p>
+                    <p>Average rating - <?= isset($info['avgRating']) ? $info['avgRating'] : 0 ?></p>
                 </div>
             </div>
+            <?php if (empty($info)) : ?>
+                <p class="text-center mt-3">You don't have any recipe. <a href="/recipes/create">Create</a> a recipe now</p>
+            <?php else : ?>
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-12 col-md-4">
@@ -100,6 +104,7 @@
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </main>
 

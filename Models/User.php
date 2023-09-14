@@ -7,12 +7,14 @@ class User
     protected $name;
     protected $email;
     protected $password;
+    protected $isAdmin;
 
     public function __construct($name, $email, $password)
     {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->isAdmin = 0;
     }
 
 
@@ -41,10 +43,19 @@ class User
         return $this->password;
     }
 
-
     public function setPassword($password): void
     {
         $this->password = $password;
+    }
+
+    public function getIsAdmin(): int
+    {
+        return $this->isAdmin;
+    }
+
+    public function setIsAdmin(int $isAdmin): void
+    {
+        $this->isAdmin = $isAdmin;
     }
 
 

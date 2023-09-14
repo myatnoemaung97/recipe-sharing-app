@@ -14,7 +14,6 @@
         <?php require base_path('views/partials/nav.view.php') ?>
     </header>
     <main>
-
         <div class="content">
             <form class="d-flex flex-row justify-content-center align-items-center" style="max-width: 1000px; margin: auto;" action="/recipes" method="POST" enctype="multipart/form-data">
                 <div class="d-flex flex-row justify-content-between gap-4">

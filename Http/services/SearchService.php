@@ -14,7 +14,6 @@ class SearchService
     }
 
     public function searchByParams($params, $order = '') {
-        //dd($this->buildQuery($params, $order));
         return $this->recipeRepo->findByParams($this->buildQuery($params, $order), array_values($params));
     }
 

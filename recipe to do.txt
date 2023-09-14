@@ -1,0 +1,37 @@
+diffiuculty old form
+search bar change
+image old image
+htmlspecialchar
+change image
+default image
+responsive
+error pages
+recipe owner not allowed to rate
+authorization
+footer
+follow an author
+comments like, reply
+pagination
+info blue
+remove ratings
+comment validation
+show author of recipe
+fetch vs $ajax
+if fetch why can't dd, echo or var dump\
+what if two photos have same name
+view other users profile
+guest user browse recipe
+search old form data
+if no recipe -add some recipes message
+password change
+profile pic
+delete account
+go to recipe from recipe cardt at my profile 
+delete recipe confirm have to click twice 
+form card shadow
+banned email list
+
+id, name, user_id, created, updated
+admin tables paginations
+show recipe image in table
+

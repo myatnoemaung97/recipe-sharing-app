@@ -3,6 +3,7 @@
 use Core\Session;
 use Core\validators\RegistrationValidator;
 use Models\User;
+use repositories\StatsRepo;
 use repositories\UserRepository;
 
 $name = $_POST['name'];
@@ -21,5 +22,8 @@ $user = new User($name, $email, $password);
 $user = $userRepo->save($user);
 
 login($user);
+
+$statsRepo = new StatsRepo();
+$statsRepo->updateUsers();
 
 redirect('/home');

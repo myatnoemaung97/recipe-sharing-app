@@ -6,6 +6,7 @@ use Core\validators\RecipeValidator;
 use Http\services\ImageService;
 use Models\Recipe;
 use repositories\RecipeRepository;
+use repositories\StatsRepo;
 
 $errors = array_merge(RecipeValidator::validate($_POST), ImageValidator::validate());
 
@@ -37,5 +38,8 @@ $recipe = new Recipe(
 );
 
 $recipeRepo->saveRecipe($recipe);
+
+$statsRepo = new StatsRepo();
+$statsRepo->updateRecipes();
 
 redirect('/home');

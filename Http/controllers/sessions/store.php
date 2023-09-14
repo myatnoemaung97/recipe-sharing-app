@@ -14,7 +14,7 @@ if (!empty($errors)) {
     redirect('/login');
 }
 
-$user = Authenticator::authenticate($email, $password);
+$user = Authenticator::authenticateByEmail($email, $password);
 
 if (!$user) {
     Session::flashErrorsAndOldData([
@@ -23,7 +23,13 @@ if (!$user) {
     redirect('/login');
 }
 
+
 login($user);
+
+if ($user['is_admin'] === 1) {
+    redirect("/home/admin");
+}
+
 redirect('/home');
 
 

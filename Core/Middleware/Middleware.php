@@ -5,7 +5,8 @@ namespace Core\Middleware;
 class Middleware
 {
     const map = [
-      'guest' => Guest::class, 'authenticated' => Authenticated::class
+        'guest' => Guest::class,
+        'authenticated' => Authenticated::class
     ];
 
     public static function authorize($middleware) {

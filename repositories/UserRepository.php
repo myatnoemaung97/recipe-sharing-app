@@ -15,14 +15,21 @@ class UserRepository
     }
 
     public function save(User $user) {
-        $statement = 'insert into users (name, email, password, created) values (:name, :email, :password, :created)';
+        $statement = 'insert into users (name, email, password, created, is_admin) values (:name, :email, :password, :created, :is_admin)';
         $result = $this->db->query($statement, [
             'name' => $user->getName(),
             'email' => $user->getEmail(),
             'password' => password_hash($user->getPassword(), PASSWORD_BCRYPT),
-            'created' => date('Y-m-d H:i:s' )]);
+            'created' => date('Y-m-d H:i:s' ),
+            'is_admin' => $user->getIsAdmin()
+            ]);
 
         return $this->findLastInserted();
+    }
+
+    public function findAll($sort = '') {
+        $statement = "SELECT * FROM users ORDER BY " . (empty($sort) ? 'id' : $sort);
+        return $this->db->query($statement)->fetchAll();
     }
 
     public function findByEmail($email) {
@@ -44,5 +51,21 @@ class UserRepository
     public function findLastInserted() {
         $query = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
         return $this->db->query($query)->fetch();
+    }
+
+    public function update($id, $name, $email) {
+        $query = "UPDATE users SET name=:name, email=:email WHERE id=:id";
+        $this->db->query($query, [
+            'name' => $name,
+            'email' => $email,
+            'id' => $id
+        ]);
+    }
+
+    public function findByAdmin($admin) {
+        $query = "SELECT * FROM users WHERE is_admin=:admin";
+        return $this->db->query($query, [
+           'admin' => $admin
+        ])->fetchAll();
     }
 }

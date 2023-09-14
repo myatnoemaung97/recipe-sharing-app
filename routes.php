@@ -2,6 +2,13 @@
 
 $router->get('/', "index.php")->only('guest');
 
+$router->get('/home/admin', "/admin/index.php")->only('authenticated');
+$router->get('/home/admin/users', "/admin/users.php")->only('authenticated');
+$router->get('/home/admin/recipes', "/admin/recipes.php")->only('authenticated');
+$router->get('/home/admin/admins', "/admin/admins.php")->only('authenticated');
+$router->get('/admins/create', "/admin/create.php")->only('authenticated');
+$router->post('/admins', "/admin/store.php")->only('authenticated');
+
 $router->get('/login', "/sessions/create.php")->only('guest');
 $router->post('/login', "/sessions/store.php")->only('guest');
 $router->get('/logout', "/sessions/destroy.php");
@@ -10,6 +17,8 @@ $router->get('/register', "/registration/create.php")->only('guest');
 $router->post('/register', "/registration/store.php")->only('guest');
 
 $router->get('/profile', "/profile/index.php")->only('authenticated');
+$router->get('/profile/edit', "/profile/edit.php")->only('authenticated');
+$router->post('/profile/update', "/profile/update.php")->only('authenticated');
 
 $router->get('/home', "index.php")->only('authenticated');
 
