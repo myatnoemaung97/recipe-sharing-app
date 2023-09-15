@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registration</title>
+    <title>Login</title>
     <?php require BASE_PATH . 'public/resources/links/links.php' ?>
 </head>
 
@@ -15,6 +15,8 @@
     </header>
     <main>
         <div class="content">
+            <h3 class="heading text-center mt-5">Login to your account</h3>
+            <p class="text-center">New to Yum Share? <a href="/register">Sign up</a> now</p>
             <form style="max-width: 600px; margin: auto; padding-top: 50px;" action="/login" method="POST">
                 <label>Email</label>
                 <input class="form-control mb-3" type="text" name="email" value="<?= $_SESSION['_flash']['old']['email'] ?? '' ?>">

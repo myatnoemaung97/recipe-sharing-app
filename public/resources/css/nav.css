@@ -12,7 +12,6 @@
     display: none;
 }
 
-
 .no-underline {
     text-decoration: none;
 }
@@ -22,7 +21,7 @@
     font-size: 14px;
 }
 
-nav {
+nav, footer {
     background-color: #800000;
 }
 

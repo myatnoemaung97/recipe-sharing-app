@@ -15,8 +15,8 @@
     </header>
     <main>
         <div class="content">
-            <p class="slogan text-black mb-4 fs-4">Share, Savor, Swap Recipes Together</p>
-            <div class="container">
+            <?php require base_path("/views/search/search.view.php") ?>
+            <div class="container mt-5">
                 <div class="row">
                     <?php foreach ($recipes as $recipe) : ?>
                         <div class="col-12 col-md-4 col-lg-3">
@@ -31,7 +31,7 @@
                                                 <p><i class="fa-solid fa-trophy me-1"></i><?= htmlspecialchars(intToDifficulty($recipe['difficulty'])) ?></p>
                                             </div>
                                             <div>
-                                                <?php if(isset($recipe['rating'])) : ?>
+                                                <?php if (isset($recipe['rating'])) : ?>
                                                     <?php for ($i = 1; $i <= $recipe['rating']; $i++) : ?>
                                                         <i class="star fa-solid fa-star fa-lg"></i>
                                                     <?php endfor; ?>
@@ -46,8 +46,5 @@
                 </div>
             </div>
         </div>
-
     </main>
-
-
 </body>

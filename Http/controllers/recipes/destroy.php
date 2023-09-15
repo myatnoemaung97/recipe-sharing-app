@@ -3,5 +3,10 @@
 use repositories\RecipeRepository;
 
 $recipeRepo = new RecipeRepository();
-$recipeRepo->deleteById($_POST['recipeId']);
+
+$recipe = $recipeRepo->findById($_POST['id']);
+
+authorize($_SESSION['user']['id'] == $recipe['user_id'] || $_SESSION['admin'], 403);
+
+$recipeRepo->delete($_POST['id']);
 

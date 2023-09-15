@@ -54,11 +54,12 @@ class UserRepository
     }
 
     public function update($id, $name, $email) {
-        $query = "UPDATE users SET name=:name, email=:email WHERE id=:id";
+        $query = "UPDATE users SET name=:name, email=:email, updated=:updated WHERE id=:id";
         $this->db->query($query, [
             'name' => $name,
             'email' => $email,
-            'id' => $id
+            'id' => $id,
+            'updated' => date('Y-m-d H:i:s')
         ]);
     }
 
@@ -67,5 +68,12 @@ class UserRepository
         return $this->db->query($query, [
            'admin' => $admin
         ])->fetchAll();
+    }
+
+    public function delete($id) {
+        $query = "DELETE FROM users WHERE id=:id";
+        $this->db->query($query, [
+            'id' => $id
+        ]);
     }
 }

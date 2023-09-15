@@ -15,6 +15,7 @@
     </header>
     <main>
         <div class="content">
+            <h3 class="heading text-center mt-2 mb-2">Create A New Recipe</h3>
             <form class="d-flex flex-row justify-content-center align-items-center" style="max-width: 1000px; margin: auto;" action="/recipes" method="POST" enctype="multipart/form-data">
                 <div class="d-flex flex-row justify-content-between gap-4">
                     <div>
@@ -39,9 +40,9 @@
                         <label class="mt-2" for="difficulty">Difficulty</label>
                         <select name="difficulty" id="difficulty" class="form-select">
                             <option value="">Select</option>
-                            <option value="easy" <?php echo isset($_POST['difficulty']) && $_SESSION['_flash']['old']['difficulty'] === 'easy' ? 'selected' : ''; ?>>Easy</option>
-                            <option value="medium" <?php echo isset($_POST['difficulty']) && $_SESSION['_flash']['old']['difficulty'] === 'medium' ? 'selected' : ''; ?>>Medium</option>
-                            <option value="hard" <?php echo isset($_POST['difficulty']) && $_SESSION['_flash']['old']['difficulty'] === 'hard' ? 'selected' : ''; ?>>Hard</option>
+                            <option value="easy" <?= isset($_SESSION['_flash']['old']) && $_SESSION['_flash']['old']['difficulty'] === 'easy' ? 'selected' : '' ?>>Easy</option>
+                            <option value="medium" <?= isset($_SESSION['_flash']['old']) && $_SESSION['_flash']['old']['difficulty'] === 'medium' ? 'selected' : '' ?>>Medium</option>
+                            <option value="hard" <?= isset($_SESSION['_flash']['old']) && $_SESSION['_flash']['old']['difficulty'] === 'hard' ? 'selected' : '' ?>>Hard</option>
                         </select>
                         <?php if (isset($_SESSION['_flash']['errors']['difficulty'])) : ?>
                             <p class="warning"><?= $_SESSION['_flash']['errors']['difficulty'] ?></p>
@@ -94,6 +95,7 @@
             </form>
         </div>
     </main>
+    
     <script>
         // JavaScript function to add new ingredient input fields
         function addIngredient() {

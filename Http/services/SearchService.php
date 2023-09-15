@@ -31,11 +31,7 @@ class SearchService
     }
 
     private function bindOrder($query, $order) {
-        $query .= " ORDER BY $order";
-        if ($order === 'created') {
-            return $query . ' ASC';
-        }
-        return $query . ' DESC';
+        return $query . " ORDER BY $order" . ' DESC';
     }
 
     private function bindParams($query, $params) {

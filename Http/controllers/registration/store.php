@@ -23,6 +23,9 @@ $user = $userRepo->save($user);
 
 login($user);
 
+$_SESSION['admin'] = false;
+
+
 $statsRepo = new StatsRepo();
 $statsRepo->updateUsers();
 

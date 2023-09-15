@@ -5,8 +5,9 @@ namespace Http\services;
 class ImageService
 {
     public static function store($image) {
-        $targetFile = BASE_PATH . 'public/resources/uploads/' . $image['name'];
+        $uniqueName = $image['name'] . uniqid();
+        $targetFile = BASE_PATH . 'public/resources/uploads/' . $uniqueName;
         move_uploaded_file($image['tmp_name'], $targetFile);
-        return '/resources/uploads/' . $image['name'];
+        return '/resources/uploads/' . $uniqueName;
     }
 }

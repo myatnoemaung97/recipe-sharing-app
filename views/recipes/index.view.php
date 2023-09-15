@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Recipe Realm - Home</title>
+    <title>Yum Share - My Recipes</title>
     <?php require BASE_PATH . 'public/resources/links/links.php' ?>
 </head>
 
@@ -20,7 +20,7 @@
                 <h1 class="heading mb-3">My Recipes</h1>
                 <?php if (!$recipes) : ?>
                     <p class="fs-4">No recipes found</p>
-                    <a href="<?= $_SERVER['HTTP_REFERER'] ?>">Go back</a>
+                    <p><a href="/recipes/create">Create</a> a recipe.</p>
                 <?php else : ?>
                     <div class="row">
                         <?php foreach ($recipes as $recipe) : ?>
@@ -51,4 +51,5 @@
             </div>
         </div>
     </main>
+    
 </body>

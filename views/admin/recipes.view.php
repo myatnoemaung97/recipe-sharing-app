@@ -17,6 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="/resources/dist/css/adminlte.min.css">
   <script src="https://kit.fontawesome.com/807f2d6ec6.js" crossorigin="anonymous"></script>
+  <script src="/resources/js/recipe.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -42,7 +43,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
-          <div class='d-flex justify-content-end'>
+          <div class='d-flex justify-content-between'>
+            <h5>Total - <?= count($recipes) ?></h5>
             <form action="/home/admin/recipes" method="GET">
               <label for="">Sort by: </label>
               <select name="sort" id="">
@@ -64,6 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <th scope="col">Author ID</th>
                 <th scope="col">Created</th>
                 <th scope="col">Updated</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +78,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <td><?= $recipe['user_id'] ?></td>
                   <td><?= $recipe['created'] ?></td>
                   <td><?= $recipe['updated'] ?></td>
+                  <td><button class="btn btn-danger" onclick="confirmDeleteRecipe(<?= $recipe['id'] ?>, true)">Delete</button></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

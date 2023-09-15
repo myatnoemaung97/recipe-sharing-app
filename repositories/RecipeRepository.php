@@ -52,7 +52,7 @@ class RecipeRepository
         ])->fetch();
     }
 
-    public function deleteById($id) {
+    public function delete($id) {
         $statement = "DELETE FROM recipes WHERE id = :id";
         $this->db->query($statement, [
             'id' => $id
@@ -101,5 +101,12 @@ class RecipeRepository
         return $this->db->query($query, $params)->fetchAll();
     }
 
+    public function updateImage($image, $id) {
+        $query = "UPDATE recipes SET image = :image WHERE id =:id ";
+        $this->db->query($query, [
+            'image' => $image,
+            'id' => $id
+        ]);
+    }
 
 }

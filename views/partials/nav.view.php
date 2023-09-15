@@ -30,6 +30,9 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/profile?id=<?= $_SESSION['user']['id'] ?>">My Profile</a></li>
+                        <?php if ($_SESSION['admin']) : ?>
+                            <li><a class="dropdown-item" href="/home/admin">Admin Panel</a></li>
+                        <?php endif; ?>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </div>
@@ -40,13 +43,11 @@
                 </form>
             </div>
         </div>
-
     <?php else : ?>
         <div class="container-fluid d-flex flex-row justify-content-between align-items-center">
             <?php $brandLink = isset($_SESSION['user']) ? '/home' : '/' ?>
             <a class="heading navbar-brand text-white fs-4" href="<?= $brandLink ?>">Yum Share</a>
             <div class="search-bar d-flex flex-row justify-content-between align-items-center gap-3">
-                <a class="no-underline text-white" href=""><span class="gray-hover">Browse Recipes</span></a>
                 <a class="no-underline text-white gray-hover ms-2" href="/login"><span class="gray-hover">Login</span></a>
                 <a class="no-underline text-white gray-hover" href="/register"><span class="gray-hover">Register</span></a>
             </div>

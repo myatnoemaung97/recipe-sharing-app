@@ -6,7 +6,8 @@ class Middleware
 {
     const map = [
         'guest' => Guest::class,
-        'authenticated' => Authenticated::class
+        'authenticated' => Authenticated::class,
+        'admin' => Admin::class
     ];
 
     public static function authorize($middleware) {

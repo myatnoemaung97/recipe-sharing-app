@@ -23,11 +23,12 @@ if (!$user) {
     redirect('/login');
 }
 
-
 login($user);
 
 if ($user['is_admin'] === 1) {
-    redirect("/home/admin");
+    $_SESSION['admin'] = true;
+} else {
+    $_SESSION['admin'] = false;
 }
 
 redirect('/home');

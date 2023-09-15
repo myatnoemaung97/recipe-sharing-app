@@ -17,6 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="/resources/dist/css/adminlte.min.css">
   <script src="https://kit.fontawesome.com/807f2d6ec6.js" crossorigin="anonymous"></script>
+  <script src="/resources/js/general.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -42,7 +43,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
-          <div class='d-flex justify-content-end'>
+          <div class='d-flex justify-content-between'>
+            <h5>Total - <?= count($users) ?></h5>
             <form action="/home/admin/users" method="GET">
               <label for="">Sort by: </label>
               <select name="sort" id="">
@@ -55,6 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <button type="submit" class="btn btn-primary btn-sm">Sort</button>
             </form>
           </div>
+
           <table class="table table-secondary table-striped table-hover">
             <thead>
               <tr>
@@ -63,6 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <th scope="col">Email</th>
                 <th scope="col">Created</th>
                 <th scope="col">Updated</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -73,6 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <td><?= $user['email'] ?></td>
                   <td><?= $user['created'] ?></td>
                   <td><?= $user['updated'] ?></td>
+                  <td><button class="btn btn-danger" onclick="confirmDeleteProfile(<?= $user['id'] ?>, true)">Delete</button></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

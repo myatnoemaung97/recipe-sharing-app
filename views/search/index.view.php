@@ -15,61 +15,7 @@
   </header>
   <main>
     <div class="content">
-      <div class="text-white px-2" style="height: 220px; margin-top: -13px; background-color: #b31914;">
-        <p class="slogan text-black pt-2 mb-3 fs-4">Share, Savor, Swap Recipes Together</p>
-        <div class="d-flex justify-content-center">
-          <form id="search-form" action="/search" method="GET">
-            <div class="d-flex flex-column mb-2 gap-1">
-              <label for="name">Name:</label>
-              <input class="form-control" type="text" name='name' id='name' value=<?= $_GET['name'] ?? '' ?>>
-            </div>
-
-            <div class="d-flex flex-row justify-content-between gap-3">
-              <div class="d-flex flex-column gap-1">
-                <label for="time">Time:</label>
-                <select class="form-select" name="time" id="time">
-                  <option value=999 selected>All</option>
-                  <option value=15>Under 15 mins</option>
-                  <option value=30>Under 30 mins</option>
-                  <option value=45>Under 45 mins</option>
-                  <option value=60>Under 1 hr</option>
-                  <option value=90>Under 1:30 hr</option>
-                  <option value=120>Under 2 hr</option>
-                </select>
-              </div>
-
-              <div class="d-flex flex-column gap-1">
-                <label for="difficulty">Difficulty:</label>
-                <select class="form-select" name="difficulty" id="difficulty">
-                  <option value=0 selected>All</option>
-                  <option value=1>Easy</option>
-                  <option value=2>Medium</option>
-                  <option value=3>Hard</option>
-                </select>
-              </div>
-
-              <div class="d-flex flex-column gap-1">
-                <label for="servings">Servings:</label>
-                <input class="form-control" type="number" name="servings" id="servings">
-              </div>
-
-              <div class="d-flex flex-column gap-1">
-                <label for="sort">Sort By:</label>
-                <select class="form-select" name="sort" id="sort">
-                  <option value="created" selected>New</option>
-                  <option value="rating">Ratings</option>
-                  <option value="views">Views</option>
-                </select>
-              </div>
-
-              <div class="d-flex flex-column">
-                <div class="flex-fill" for=""></div>
-                <button type="submit" class="btn btn-success">Search</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <?php require base_path("/views/search/search.view.php") ?>
       <div class="container mt-5">
         <div class="row">
           <?php foreach ($recipes as $recipe) : ?>

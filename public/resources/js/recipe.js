@@ -23,21 +23,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function confirmDelete(recipeId) {
+function confirmDeleteRecipe(recipeId, admin = false) {
     if (confirm("Are you sure you want to delete this recipe?")) {
         const formData = new FormData();
 
-        formData.append('recipeId', recipeId);
+        formData.append('id', recipeId);
         formData.append('_method', 'DELETE');
 
-        fetch("/recipe/delete", {
+        fetch("/recipes", {
             method: "POST",
             body: formData
         })
             .then(response => {
                 if (response.ok) {
                     console.log("Recipe deleted successfully");
-                    window.location.href = "/recipes";
+                    if (admin === false) {
+                        window.location.href = "/recipes";
+                    }
+                    if (admin === true) {
+                        window.location.href = "/home/admin/recipes"
+                    }
                 } else {
                     console.error("Failed to delete recipe");
                 }
@@ -66,9 +71,19 @@ function updateImagePreview() {
     }
 }
 
-function savePhoto() {
 
-    alert('Photo saved!');
+function updatePhoto() {
+    console.log('hello');
+    // const formData = new FormData();
+
+    // // formData.append('image', image);
+    // // formData.append('recipeId', recipeId);
+    // // formData.append('_method', 'PATCH');
+
+    // fetch("/home", {
+    //     method: "GET",
+    //     body: formData
+    // });
 }
 
 function favourite(recipeId) {

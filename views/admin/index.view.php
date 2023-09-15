@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Current - <?= $recipes['current'] ?></p>
                                         <p>This week - </p>
                                     </div>
-                                    <a class="btn btn-primary" href="">Details</a>
+                                    <a class="btn btn-primary" href="/home/admin/recipes">Details</a>
                                 </div>
                             </div>
                         </div>
