@@ -95,6 +95,9 @@
             </form>
         </div>
     </main>
+    <footer>
+        <?php require base_path("views/partials/footer.view.php") ?>
+    </footer>
     
     <script>
         // JavaScript function to add new ingredient input fields

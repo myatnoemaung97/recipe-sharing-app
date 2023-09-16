@@ -37,4 +37,7 @@
             </form>
         </div>
     </main>
+    <footer>
+        <?php require base_path("views/partials/footer.view.php") ?>
+    </footer>
 </body>

@@ -39,6 +39,7 @@
             <?php else : ?>
                 <div class="container mt-5">
                     <div class="row">
+                        <!-- top-rated -->
                         <div class="col-12 col-md-4">
                             <a class="no-underline" href="/recipe?id=<?= $topRated['id'] ?>">
                                 <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
@@ -61,6 +62,9 @@
                                 </div>
                             </a>
                         </div>
+                        <!-- /top-rated -->
+
+                        <!-- most-viewd -->
                         <div class="col-12 col-md-4">
                             <a class="no-underline" href="/recipe?id=<?= $mostViewed['id'] ?>">
                                 <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
@@ -83,6 +87,9 @@
                                 </div>
                             </a>
                         </div>
+                        <!-- /most-viewd -->
+
+                        <!-- most-comments -->
                         <div class="col-12 col-md-4">
                             <a class="no-underline" href="/recipe?id=<?= $mostComments['id'] ?>">
                                 <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
@@ -105,10 +112,13 @@
                                 </div>
                             </a>
                         </div>
+                        <!-- most-comments -->
                     </div>
                 </div>
             <?php endif; ?>
         </div>
     </main>
-    
+    <footer>
+        <?php require base_path("views/partials/footer.view.php") ?>
+    </footer>
 </body>

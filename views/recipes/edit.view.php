@@ -41,9 +41,9 @@
                         <label class="mt-2" for="difficulty">Difficulty</label>
                         <select name="difficulty" id="difficulty" class="form-select">
                             <option value="">Select</option>
-                            <option value="easy" <?php echo isset($_POST['difficulty']) && $_SESSION['_flash']['old']['difficulty'] === 'easy' ? 'selected' : ''; ?>>Easy</option>
-                            <option value="medium" <?php echo isset($_POST['difficulty']) && $_SESSION['_flash']['old']['difficulty'] === 'medium' ? 'selected' : ''; ?>>Medium</option>
-                            <option value="hard" <?php echo isset($_POST['difficulty']) && $_SESSION['_flash']['old']['difficulty'] === 'hard' ? 'selected' : ''; ?>>Hard</option>
+                            <option value="easy" <?= ($recipe['difficulty'] === 1) || isset($_SESSION['_flash']['old']) && $_SESSION['_flash']['old']['difficulty'] === 'easy' ? 'selected' : '' ?>>Easy</option>
+                            <option value="medium" <?= ($recipe['difficulty'] === 2) || isset($_SESSION['_flash']['old']) && $_SESSION['_flash']['old']['difficulty'] === 'medium' ? 'selected' : '' ?>>Medium</option>
+                            <option value="hard" <?= ($recipe['difficulty'] === 3) || isset($_SESSION['_flash']['old']) && $_SESSION['_flash']['old']['difficulty'] === 'hard' ? 'selected' : '' ?>>Hard</option>
                         </select>
                         <?php if (isset($_SESSION['_flash']['errors']['difficulty'])) : ?>
                             <p class="warning"><?= $_SESSION['_flash']['errors']['difficulty'] ?></p>
@@ -74,6 +74,14 @@
                             <p class="warning"><?= $_SESSION['_flash']['errors']['ingredients'] ?></p>
                         <?php endif; ?>
 
+                        <a id="change-photo-button" class="btn btn-success mt-3" onclick="changePhoto()">Change Photo</a>
+                        <div id="change-photo-section" class="hide mt-3">
+                            <label class="mt-2" for="image">Image</label>
+                            <input class="form-control" type="file" name="image" id="image">
+                            <?php if (isset($_SESSION['_flash']['errors']['image'])) : ?>
+                                <p class="warning"><?= $_SESSION['_flash']['errors']['image'] ?></p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <div>
                         <label class="d-block mt-2" for="instructions">Instructions</label>
@@ -90,7 +98,10 @@
             </form>
         </div>
     </main>
-    
+    <footer>
+        <?php require base_path("views/partials/footer.view.php") ?>
+    </footer>
+
     <script>
         // JavaScript function to add new ingredient input fields
         function addIngredient() {

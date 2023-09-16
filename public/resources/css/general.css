@@ -5,13 +5,12 @@ body {
 }
 
 main {
-    position: relative;
-    
+ 
 }
 
 .content {
     padding-top: 75px;
-    height: 100%;
+    padding-bottom: 75px;
 }
 
 .heading {
@@ -56,3 +55,13 @@ main {
 .pointer-cursor {
     cursor: pointer;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+  

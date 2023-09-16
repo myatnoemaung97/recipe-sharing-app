@@ -7,6 +7,10 @@ use repositories\RecipeRepository;
 
 $errors = RecipeValidator::validate($_POST);
 
+if (\Core\validators\Validator::isFileSelected('image')) {
+    $errors = array_merge($errors, \Core\validators\ImageValidator::validate());
+}
+
 $query = parse_url($_SERVER['HTTP_REFERER'])['query'];
 parse_str($query, $result);
 
@@ -27,6 +31,9 @@ $attributes = [
     'id' => $result['id']
 ];
 
+if (\Core\validators\Validator::isFileSelected('image')) {
+    $attributes['image'] = \Http\services\ImageService::store($_FILES['image']);
+}
 
 $recipeRepo = new RecipeRepository();
 $recipeRepo->updateRecipe($attributes);

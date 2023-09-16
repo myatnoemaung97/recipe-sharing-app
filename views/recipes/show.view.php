@@ -21,20 +21,6 @@
           <div class="recipe-image d-flex flex-column align-items-center position-relative">
             <!-- photo -->
             <img id="recipe-image" class="" src="<?= $_FILES['image'] ?? $recipe['image'] ?>" alt="recipe" style="max-width: 100%; max-height: 500px;">
-            <?php if (loggedIn() && $_SESSION['user']['id'] === $recipe['user_id']) : ?>
-              <form action="/recipe/patch?id=<?= $recipe['id'] ?>" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="_method" value="PATCH">
-                <div class="position-absolute top-50 start-50 translate-middle">
-                  <label for="image-upload" class="change-photo-button btn btn-success btn-sm me-2">
-                    Change Photo
-                  </label>
-                  <input type="file" id="image-upload" style="display: none;" onchange="updateImagePreview()">
-                  <button id="save-photo-button" class="save-photo-button btn btn-danger btn-sm d-none" onclick="updatePhoto()">
-                    Save Photo
-                  </button>
-                </div>
-              </form>
-            <?php endif; ?>
             <!-- /photo -->
 
             <ul class="text-dark nav nav-underline nav-fill" style="width: 100%;">
@@ -195,4 +181,7 @@
       </div>
     </div>
   </main>
+  <footer>
+    <?php require base_path("views/partials/footer.view.php") ?>
+  </footer>
 </body>

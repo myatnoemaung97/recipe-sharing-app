@@ -16,4 +16,7 @@
     <?php else : ?>
         <a href="/">Go back home</a>
     <?php endif ?>
+    <footer>
+        <?php require base_path("views/partials/footer.view.php") ?>
+    </footer>
 </body>

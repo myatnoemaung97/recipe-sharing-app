@@ -53,39 +53,6 @@ function confirmDeleteRecipe(recipeId, admin = false) {
     }
 }
 
-function updateImagePreview() {
-    const input = document.getElementById('image-upload');
-    const image = document.getElementById('recipe-image');
-    const saveButton = document.getElementById('save-photo-button');
-
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            image.src = e.target.result;
-            // Show the "Save Photo" button
-            saveButton.classList.remove('d-none');
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-
-function updatePhoto() {
-    console.log('hello');
-    // const formData = new FormData();
-
-    // // formData.append('image', image);
-    // // formData.append('recipeId', recipeId);
-    // // formData.append('_method', 'PATCH');
-
-    // fetch("/home", {
-    //     method: "GET",
-    //     body: formData
-    // });
-}
-
 function favourite(recipeId) {
     const formData = new FormData();
 
@@ -135,3 +102,11 @@ function unfavourite(recipeId) {
         });
 }
 
+function changePhoto() {
+    const changePhotoButton = document.getElementById("change-photo-button");
+    const changePhotoSection = document.getElementById("change-photo-section");
+
+    changePhotoButton.classList.add("hide");
+    changePhotoSection.classList.remove("hide");
+    changePhotoSection.classList.add("show");
+}
