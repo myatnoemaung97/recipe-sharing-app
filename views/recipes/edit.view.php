@@ -16,10 +16,10 @@
     <main>
         <div class="content">
             <h3 class="heading text-center mt-2 mb-2">Edit the recipe</h3>
-            <form class="d-flex flex-row justify-content-center align-items-center" style="max-width: 1000px; margin: auto;" action="/recipe/update?id=<?= $recipe['id'] ?>" method="POST" enctype="multipart/form-data">
+            <form class="d-flex flex-row justify-content-center align-items-center px-2" style="max-width: 1500px; margin: auto;" action="/recipe/update?id=<?= $recipe['id'] ?>" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PATCH">
-                <div class="d-flex flex-row justify-content-between gap-4">
-                    <div>
+                <div class="row">
+                    <div class="col col-12 col-lg-6">
                         <label class="mt-2" for="name">Name</label>
                         <input class="form-control" type="text" name="name" id="name" value='<?= $_SESSION['_flash']['old']['name'] ?? $recipe['name'] ?? '' ?>'>
                         <?php if (isset($_SESSION['_flash']['errors']['name'])) : ?>
@@ -83,7 +83,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div>
+                    <div class="col col-12 col-lg-6">
                         <label class="d-block mt-2" for="instructions">Instructions</label>
                         <textarea class="form-control" name="instructions" id="instructions" style="width: 600px; height: 520px;"><?= $_SESSION['_flash']['old']['instructions'] ?? $recipe['instructions'] ?? '' ?></textarea>
                         <?php if (isset($_SESSION['_flash']['errors']['instructions'])) : ?>

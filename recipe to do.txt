@@ -1,17 +1,17 @@
 default image
-responsive
 error pages
 authorization
-footer
 follow an author
 comments like, reply
 pagination
 info blue
-remove ratings
+remove ratings ***
 comment validation
 view other users profile
 password change
 profile pic
 banned email list
 admin tables paginations
+
+this week *****
 

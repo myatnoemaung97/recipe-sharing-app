@@ -16,9 +16,9 @@
     <main>
         <div class="content">
             <h3 class="heading text-center mt-2 mb-2">Create A New Recipe</h3>
-            <form class="d-flex flex-row justify-content-center align-items-center" style="max-width: 1000px; margin: auto;" action="/recipes" method="POST" enctype="multipart/form-data">
-                <div class="d-flex flex-row justify-content-between gap-4">
-                    <div>
+            <form class="d-flex flex-row justify-content-center align-items-center px-2" style="max-width: 1500px; margin: auto;" action="/recipes" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col col-12 col-lg-6">
                         <label class="mt-2" for="name">Name</label>
                         <input class="form-control" type="text" name="name" id="name" value='<?= $_SESSION['_flash']['old']['name'] ?? '' ?>'>
                         <?php if (isset($_SESSION['_flash']['errors']['name'])) : ?>
@@ -77,7 +77,7 @@
                         <?php endif; ?>
 
                     </div>
-                    <div>
+                    <div class="col col-12 col-lg-6">
                         <label class="d-block mt-2" for="instructions">Instructions</label>
                         <textarea class="form-control" name="instructions" id="instructions" style="width: 600px; height: 450px;"><?= $_SESSION['_flash']['old']['instructions'] ?? '' ?></textarea>
                         <?php if (isset($_SESSION['_flash']['errors']['instructions'])) : ?>

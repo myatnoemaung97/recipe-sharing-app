@@ -42,7 +42,7 @@
                         <!-- top-rated -->
                         <div class="col-12 col-md-4">
                             <a class="no-underline" href="/recipe?id=<?= $topRated['id'] ?>">
-                                <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
+                                <div class="recipe-card card mb-3" style="background-color: #FAEBD7;">
                                     <h5 class="card-header heading fw-semibold">Top Rated</h5>
                                     <img src=<?= $topRated['image'] ?> class="card-img-top bg-white" alt="recipe" style="height: 210px ;">
                                     <div class="card-body lh-1">
@@ -67,7 +67,7 @@
                         <!-- most-viewd -->
                         <div class="col-12 col-md-4">
                             <a class="no-underline" href="/recipe?id=<?= $mostViewed['id'] ?>">
-                                <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
+                                <div class="recipe-card card mb-3" style="background-color: #FAEBD7;">
                                     <h5 class="card-header heading fw-semibold">Most Viewed - <?= $mostViewed['views'] ?> <i class="fa-regular fa-eye text-" style="color: rgba(0,0,0,0.4);"></i></h5>
                                     <img src=<?= $mostViewed['image'] ?> class="card-img-top bg-white" alt="recipe" style="height: 210px ;">
                                     <div class="card-body lh-1">
@@ -92,7 +92,7 @@
                         <!-- most-comments -->
                         <div class="col-12 col-md-4">
                             <a class="no-underline" href="/recipe?id=<?= $mostComments['id'] ?>">
-                                <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
+                                <div class="recipe-card card mb-3" style="background-color: #FAEBD7;">
                                     <h5 class="card-header heading fw-semibold">Most Comments - <?= $commentsCount ?></h5>
                                     <img src=<?= $mostComments['image'] ?> class="card-img-top bg-white" alt="recipe" style="height: 210px ;">
                                     <div class="card-body lh-1">

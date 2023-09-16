@@ -17,7 +17,7 @@
         <div class="content">
             <h2 class="text-center mt-5 heading">Register a new account</h2>
             <p class="text-center">Already have an account? <a href="/login">Login</a></p>
-            <form style="max-width: 600px; margin: auto; padding-top: 50px;" action="/register" method="POST">
+            <form class="px-2" style="max-width: 600px; margin: auto; padding-top: 50px;" action="/register" method="POST">
                 <label>Name</label>
                 <input class="form-control mb-3" type="text" name="name" value="<?= $_SESSION['_flash']['old']['name'] ?? '' ?>">
                 <?php if (isset($_SESSION['_flash']['errors']['name'])) : ?>

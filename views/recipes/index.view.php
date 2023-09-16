@@ -29,7 +29,7 @@
                                     <div class="recipe-card card mb-3" style="background-color: #ffffcc;">
                                         <img src='<?= $recipe['image'] ?>' class="card-img-top bg-white" alt="recipe" style="height: 200px ;">
                                         <div class="card-body lh-1">
-                                            <h5 class="heading card-title fs-3"><?= $recipe['name'] ?></h5>
+                                            <p class="heading card-title fs-4 fw-semibold"><?= $recipe['name'] ?></p>
                                             <div class="d-flex flex-row justify-content-between mt-3">
                                                 <div class="d-flex flex-row gap-2">
                                                     <p><i class="fa-regular fa-clock me-1"></i><?= htmlspecialchars($recipe['time']) ?> mins</p>
@@ -37,7 +37,7 @@
                                                 </div>
                                                 <div>
                                                     <?php for ($i = 1; $i <= $recipe['rating']; $i++) : ?>
-                                                        <i class="star fa-solid fa-star fa-lg"></i>
+                                                        <i class="star fa-solid fa-star"></i>
                                                     <?php endfor; ?>
                                                 </div>
                                             </div>
