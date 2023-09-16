@@ -1,6 +1,6 @@
 default image
 error pages
-authorization
+authorization ******
 follow an author
 comments like, reply
 pagination
@@ -14,4 +14,3 @@ banned email list
 admin tables paginations
 
 this week *****
-

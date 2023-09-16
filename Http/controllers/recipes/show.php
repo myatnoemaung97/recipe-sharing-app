@@ -12,6 +12,10 @@ $ratingRepo = new RatingRepository();
 $commentRepo = new CommentRepository();
 $userRepo = new UserRepository();
 
+if (!isset($_GET['id'])) {
+    abort(404);
+}
+
 $recipeId = $_GET['id'];
 
 $recipeRepo->updateView($recipeId);
@@ -32,5 +36,5 @@ view('/recipes/show.view.php',[
     'isFavourite' => $isFavourite,
     'userRating' => $userRating ? $userRating['rating'] : '',
     'comments' => $comments,
-    'author' => $userRepo->findById($recipe['user_id'])
+    'author' => $recipe ? $userRepo->findById($recipe['user_id']) : ''
 ]);

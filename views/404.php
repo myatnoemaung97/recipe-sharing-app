@@ -10,12 +10,21 @@
 </head>
 
 <body>
-    <p style="font-size: 20px;">Sorry. Page not found.</p>
-    <?php if (isset($_SESSION['user'])) : ?>
-        <a href="/home">Go back home</a>
-    <?php else : ?>
-        <a href="/">Go back home</a>
-    <?php endif ?>
+    <header>
+        <?php require base_path('views/partials/nav.view.php') ?>
+    </header>
+    <main>
+        <div class="d-flex justify-content-center container-fluid">
+            <div class="content container-fluid" style="max-width: 800px; background-color: #ffffcc;">
+                <p style="font-size: 20px;">Sorry. Page not found.</p>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <a href="/home">Go back home</a>
+                <?php else : ?>
+                    <a href="/">Go back home</a>
+                <?php endif ?>
+            </div>
+        </div>
+    </main>
     <footer>
         <?php require base_path("views/partials/footer.view.php") ?>
     </footer>
