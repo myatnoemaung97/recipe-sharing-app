@@ -65,3 +65,7 @@ footer {
     text-align: center;
     padding-top: 10px;
 }
+
+.pagination {
+    background-color: #FAEBD7;
+}

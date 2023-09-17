@@ -17,6 +17,7 @@
         <div class="content">
             <h3 class="heading text-center mt-5">Update Profile</h3>
             <form class="px-2" style="max-width: 600px; margin: auto; padding-top: 50px;" action="/profile/update?id=<?= $_SESSION['user']['id'] ?>" method="POST">
+                <input type="hidden" name="id" value="<?= $user['id'] ?>">
                 <label>Name</label>
                 <input class="form-control" type="text" name="name" value="<?= $_SESSION['_flash']['old']['name'] ?? $user['name'] ?? '' ?>">
                 <?php if (isset($_SESSION['_flash']['errors']['name'])) : ?>

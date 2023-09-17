@@ -25,7 +25,6 @@ $router->get('/home', "index.php")->only('authenticated');
 
 $router->get('/recipes/create', "/recipes/create.php")->only('authenticated');
 $router->post('/recipes', "/recipes/store.php")->only('authenticated');
-
 $router->get('/recipes', "/recipes/index.php")->only('authenticated');
 $router->get('/recipe', "/recipes/show.php");
 $router->get('/recipe/edit', "/recipes/edit.php")->only('authenticated');

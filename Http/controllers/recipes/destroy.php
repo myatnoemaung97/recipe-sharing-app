@@ -6,7 +6,7 @@ $recipeRepo = new RecipeRepository();
 
 $recipe = $recipeRepo->findById($_POST['id']);
 
-authorize($_SESSION['user']['id'] == $recipe['user_id'] || $_SESSION['admin'], 403);
+authorize($_SESSION['admin'] || $_SESSION['user']['id'] == $recipe['user_id'], 403);
 
 $recipeRepo->delete($_POST['id']);
 

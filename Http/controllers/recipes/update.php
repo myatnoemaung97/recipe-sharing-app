@@ -1,14 +1,15 @@
 <?php
 
 use Core\Session;
+use Core\validators\ImageValidator;
 use Core\validators\RecipeValidator;
-use Models\Recipe;
+use Core\validators\Validator;
 use repositories\RecipeRepository;
 
 $errors = RecipeValidator::validate($_POST);
 
-if (\Core\validators\Validator::isFileSelected('image')) {
-    $errors = array_merge($errors, \Core\validators\ImageValidator::validate());
+if (Validator::isFileSelected('image')) {
+    $errors = array_merge($errors, ImageValidator::validate());
 }
 
 $query = parse_url($_SERVER['HTTP_REFERER'])['query'];

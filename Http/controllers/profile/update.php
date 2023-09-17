@@ -5,10 +5,12 @@ use Core\Session;
 use Core\validators\RegistrationValidator;
 use repositories\UserRepository;
 
-$id = $_SESSION['user']['id'];
+$id = $_POST['id'];
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
+
+authorize($_SESSION['user']['id'] == $id, 403);
 
 $errors = RegistrationValidator::validate($name, $email, $password);
 
