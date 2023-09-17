@@ -11,12 +11,14 @@ class StatsService
     protected $userRepo;
     protected $recipeRepo;
     protected $statsRepo;
+    protected $dateTimeService;
 
     public function __construct()
     {
         $this->userRepo = new UserRepository();
         $this->recipeRepo = new RecipeRepository();
         $this->statsRepo = new StatsRepo();
+        $this->dateTimeService = new DateTimeService();
     }
 
     public function getAllTimeUsers() {
@@ -33,6 +35,18 @@ class StatsService
 
     public function getCurrentRecipes() {
         return count($this->recipeRepo->findAll());
+    }
+
+    public function getThisWeekUsers() {
+        $allUsers = $this->userRepo->findAll();
+        $thisWeekUsers = $this->dateTimeService->filter($allUsers, 7);
+        return count($thisWeekUsers);
+    }
+
+    public function getThisWeekRecipes() {
+        $allRecipes = $this->recipeRepo->findAll();
+        $thisWeekRecipes = $this->dateTimeService->filter($allRecipes, 7);
+        return count($thisWeekRecipes);
     }
 
 

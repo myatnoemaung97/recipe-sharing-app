@@ -12,5 +12,4 @@ password change
 profile pic
 banned email list
 admin tables paginations
-
-this week *****
+report to admin

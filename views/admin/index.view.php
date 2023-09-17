@@ -52,7 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="card-text">
                                         <p>All time - <?= $users['allTime'] ?></p>
                                         <p>Current - <?= $users['current'] ?></p>
-                                        <p>This week - </p>
+                                        <p>This week - <?= $users['thisWeek'] ?></p>
                                     </div>
                                     <a class="btn btn-primary" href="/home/admin/users">Details</a>
                                 </div>
@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="card-text">
                                         <p>All time - <?= $recipes['allTime'] ?></p>
                                         <p>Current - <?= $recipes['current'] ?></p>
-                                        <p>This week - </p>
+                                        <p>This week - <?= $recipes['thisWeek'] ?> </p>
                                     </div>
                                     <a class="btn btn-primary" href="/home/admin/recipes">Details</a>
                                 </div>

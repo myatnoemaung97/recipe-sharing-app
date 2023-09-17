@@ -46,7 +46,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Rate this recipe</h1>
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Rate this recipe - <span>My Rating - <span id="userRating" class="fw-semibold"><?= $userRating ?? '' ?></span></span></h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -73,9 +73,14 @@
                             </div>
                           </div>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-success" onclick="rate(<?= $recipe['id'] ?>)">Rate</button>
+                        <div class="modal-footer d-flex flex-row justify-content-between align-items-center">
+                          <div class="d-flex flex-column">
+                            <button class="btn btn-danger">Remove Rating</button>
+                          </div>
+                          <div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" onclick="rate(<?= $recipe['id'] ?>)">Rate</button>
+                          </div>
                         </div>
                       </div>
                     </div>

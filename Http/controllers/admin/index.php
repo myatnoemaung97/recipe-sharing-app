@@ -11,11 +11,13 @@ authorize($adminRepo->findByUserId($_SESSION['user']['id']), 403);
 view('admin/index.view.php', [
     'users' => [
         'allTime' => $statsService->getAllTimeUsers(),
-        'current' => $statsService->getCurrentUsers()
+        'current' => $statsService->getCurrentUsers(),
+        'thisWeek' => $statsService->getThisWeekUsers()
     ],
 
     'recipes' => [
         'allTime' => $statsService->getAllTimeRecipes(),
-        'current' => $statsService->getCurrentRecipes()
+        'current' => $statsService->getCurrentRecipes(),
+        'thisWeek' => $statsService->getThisWeekRecipes()
     ]
 ]);

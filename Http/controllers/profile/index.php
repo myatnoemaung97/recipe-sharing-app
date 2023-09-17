@@ -4,7 +4,7 @@ use Http\services\ProfileService;
 
 $profileService = new ProfileService();
 
-authorize($_SESSION['user']['id'] === $_GET['id'], 403);
+authorize($_SESSION['user']['id'] == $_GET['id'], 403);
 
 $profileService->processProfile($_GET['id']);
 
