@@ -38,6 +38,7 @@ $router->delete('/favourites', "/favourites/destroy.php")->only('authenticated')
 $router->get('/recipes/favourites', "/favourites/index.php")->only('authenticated');
 
 $router->post('/ratings', "/ratings/store.php")->only('authenticated');
+$router->delete('/ratings', "/ratings/destroy.php")->only('authenticated');
 
 $router->post('/comments', "/comments/store.php")->only('authenticated');
 $router->delete('/comments', "/comments/destroy.php")->only('authenticated');

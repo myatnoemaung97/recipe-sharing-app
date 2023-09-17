@@ -74,9 +74,13 @@
                           </div>
                         </div>
                         <div class="modal-footer d-flex flex-row justify-content-between align-items-center">
-                          <div class="d-flex flex-column">
-                            <button class="btn btn-danger">Remove Rating</button>
-                          </div>
+                          <?php if ($userRating) : ?>
+                            <div class="d-flex flex-column">
+                              <button class="btn btn-danger" title="Unrate this recipe" onclick="unrate(<?= $recipe['id'] ?>)">Remove Rating</button>
+                            </div>
+                          <?php else :?>
+                            <div class="flex-fill"></div>
+                          <?php endif; ?>
                           <div>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-success" onclick="rate(<?= $recipe['id'] ?>)">Rate</button>

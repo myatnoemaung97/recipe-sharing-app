@@ -44,4 +44,11 @@ class RatingRepository
               'recipeId' => $recipeId
               ])->fetchAll();
     }
+
+    public function delete($id) {
+        $statement = "DELETE FROM ratings WHERE id = :id";
+        $this->db->query($statement, [
+           'id' => $id
+        ]);
+    }
 }

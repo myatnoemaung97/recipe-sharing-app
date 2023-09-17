@@ -19,6 +19,11 @@ class RatingService
 
     public function setRating($recipeId) {
         $ratings = $this->ratingRepo->findByRecipeId($recipeId);
+        if (!$ratings) {
+            $this->recipeRepo->updateRating($recipeId, 0);
+            return;
+        }
+
         $ratingSum = 0;
         foreach ($ratings as $rating) {
             $ratingSum += $rating['rating'];

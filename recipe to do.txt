@@ -5,7 +5,6 @@ follow an author
 comments like, reply
 pagination
 info blue
-remove ratings ***
 comment validation
 view other users profile
 password change

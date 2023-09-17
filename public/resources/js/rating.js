@@ -255,11 +255,26 @@ function rate(recipeId) {
   closeModal();
 }
 
+function unrate(recipeId) {
+  const formData = new FormData();
+
+  formData.append('recipeId', recipeId);
+  formData.append('_method', "DELETE");
+
+  fetch("/ratings", {
+    method: "POST",
+    body: formData
+  })
+  .then(data => {
+    const userRating = document.getElementById('userRating');
+    userRating.textContent = '';
+  });
+
+  closeModal();
+}
+
 function closeModal() {
   var modal = document.getElementById('exampleModal');
   var modalInstance = bootstrap.Modal.getInstance(modal);
   modalInstance.hide();
 }
-
-
-
