@@ -110,3 +110,30 @@ function changePhoto() {
     changePhotoSection.classList.remove("hide");
     changePhotoSection.classList.add("show");
 }
+
+function report(contentId, contentType, userId, authorId) {
+    const reportType = document.getElementById(`${contentType}-report-type${contentId}`).value;
+    const description = document.getElementById(`${contentType}-report-description${contentId}`).value;
+
+    const formData = new FormData();
+    formData.append('contentId', contentId);
+    formData.append('contentType', contentType);
+    formData.append('userId', userId);
+    formData.append('reportType', reportType);
+    formData.append('description', description);
+    formData.append('authorId', authorId);
+
+    fetch("/reports", {
+        method: "POST",
+        body: formData
+    });
+
+    closeReportModal(contentId, contentType);
+}
+
+function closeReportModal(contentId, contentType) {
+    var modal = document.getElementById(`report-${contentType}-modal${contentId}`);
+    var modalInstance = bootstrap.Modal.getInstance(modal);
+    modalInstance.hide();
+}
+

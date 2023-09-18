@@ -6,6 +6,7 @@ $router->get('/home/admin', "/admin/index.php")->only('admin');
 $router->get('/home/admin/users', "/admin/users.php")->only('admin');
 $router->get('/home/admin/recipes', "/admin/recipes.php")->only('admin');
 $router->get('/home/admin/admins', "/admin/admins.php")->only('admin');
+$router->get('/home/admin/reports', "/admin/reports.php")->only('admin');
 $router->get('/admins/create', "/admin/create.php")->only('admin');
 $router->post('/admins', "/admin/store.php")->only('admin');
 
@@ -44,4 +45,6 @@ $router->delete('/comments', "/comments/destroy.php")->only('authenticated');
 $router->patch('/comment', "/comments/update.php")->only('authenticated');
 
 $router->get('/search', "/search/index.php");
+
+$router->post('/reports', "/reports/store.php")->only('authenticated');
 

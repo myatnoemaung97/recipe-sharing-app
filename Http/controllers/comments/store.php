@@ -33,6 +33,7 @@ $response = [
     'commentCount' => count($comments),
     'comments' => $comments,
     'userSessionId' => $_SESSION['user']['id'],
+    'admin' => $_SESSION['admin'],
     'recipeId' => $_POST['recipeId']
 ];
 

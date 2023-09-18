@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - Recipes</title>
+  <title>Admin - Reports</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Recipes</h1>
+              <h1 class="m-0">Reports</h1>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -44,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content">
         <div class="container-fluid">
           <div class='d-flex justify-content-between'>
-            <h5>Total - <?= count($recipes) ?></h5>
+            <h5>Total - <?= count($reports) ?></h5>
             <form action="/home/admin/recipes" method="GET">
               <label for="">Sort by: </label>
               <select name="sort" id="">
@@ -61,24 +61,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Image</th>
-                <th scope="col">Author ID</th>
-                <th scope="col">Created</th>
-                <th scope="col">Updated</th>
-                <th scope="col">Action</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Content ID</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Report Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($recipes as $recipe) : ?>
+              <?php foreach ($reports as $report) : ?>
                 <tr>
-                  <td><?= $recipe['id'] ?></td>
-                  <td><?= $recipe['name'] ?></td>
-                  <td><img src="<?= $recipe['image'] ?>" alt="recipe image" style="height: 75px; width: 75px"></td>
-                  <td><?= $recipe['user_id'] ?></td>
-                  <td><?= $recipe['created'] ?></td>
-                  <td><?= $recipe['updated'] ?></td>
-                  <td><button class="btn btn-danger" onclick="confirmDeleteRecipe(<?= $recipe['id'] ?>, true)">Delete</button></td>
+                  <td><?= $report['id'] ?></td>
+                  <td><?= $report['user_id'] ?></td>
+                  <td><?= $report['content_id'] ?></td>
+                  <td><?= $report['content_type'] ?></td>
+                  <td><?= $report['report_type'] ?></td>
+                  <td><?= $report['description'] ?></td>
+                  <td><?= $report['date'] ?></td>
+                  <td><?= $report['status'] ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

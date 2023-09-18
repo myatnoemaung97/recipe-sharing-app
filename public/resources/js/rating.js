@@ -250,9 +250,12 @@ function rate(recipeId) {
   .then(data => {
     const userRating = document.getElementById('userRating');
     userRating.textContent = data.userRating;
+
+    const userRatingModal = document.getElementById('userRatingModal');
+    userRatingModal.textContent = data.userRating;
   });
 
-  closeModal();
+  closeRatingModal();
 }
 
 function unrate(recipeId) {
@@ -268,13 +271,15 @@ function unrate(recipeId) {
   .then(data => {
     const userRating = document.getElementById('userRating');
     userRating.textContent = '';
+    const userRatingModal = document.getElementById('userRatingModal');
+    userRatingModal.textContent = '';
   });
 
-  closeModal();
+  closeRatingModal();
 }
 
-function closeModal() {
-  var modal = document.getElementById('exampleModal');
+function closeRatingModal() {
+  var modal = document.getElementById('ratingModal');
   var modalInstance = bootstrap.Modal.getInstance(modal);
   modalInstance.hide();
 }

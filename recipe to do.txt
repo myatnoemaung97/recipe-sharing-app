@@ -1,6 +1,5 @@
 default image
 error pages
-authorization ******
 follow an author
 comments like, reply
 pagination
@@ -11,4 +10,6 @@ password change
 profile pic
 banned email list
 admin tables paginations
+
 report to admin
+comment table user name

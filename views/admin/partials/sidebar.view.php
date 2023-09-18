@@ -48,10 +48,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-heart"></i>
+                            <a href="/home/admin/reports" class="nav-link">
+                                <i class="nav-icon fa-solid fa-flag"></i>
                                 <p>
-                                    Favourites
+                                    Reports
                                 </p>
                             </a>
                         </li>

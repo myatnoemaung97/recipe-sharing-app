@@ -4,7 +4,7 @@
   <div class="d-flex justify-content-center">
     <form id="search-form" action="/search" method="GET">
       <div class="d-flex flex-column mb-2 gap-1">
-        <label for="name">Name:</label>
+        <label for="name">Recipe:</label>
         <input class="form-control" type="text" name='name' id='name' value=<?= $_GET['name'] ?? '' ?>>
       </div>
 

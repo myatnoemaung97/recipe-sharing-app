@@ -38,15 +38,15 @@
 
                 <!-- rating -->
                 <li class="rating-tab nav-item">
-                  <button class="nav-link text-black" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Rate this recipe">
+                  <button class="nav-link text-black" type="button" data-bs-toggle="modal" data-bs-target="#ratingModal" title="Rate this recipe">
                     <span class="fs-6">My Rating - <span id="userRating" class="fw-semibold"><?= $userRating ?? '' ?></span></span>
                     <i class="star fa-solid fa-star fa-lg"></i>
                   </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Rate this recipe - <span>My Rating - <span id="userRating" class="fw-semibold"><?= $userRating ?? '' ?></span></span></h1>
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Rate this recipe - <span>My Rating - <span id="userRatingModal" class="fw-semibold"><?= $userRating ?? '' ?></span></span></h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -78,7 +78,7 @@
                             <div class="d-flex flex-column">
                               <button class="btn btn-danger" title="Unrate this recipe" onclick="unrate(<?= $recipe['id'] ?>)">Remove Rating</button>
                             </div>
-                          <?php else :?>
+                          <?php else : ?>
                             <div class="flex-fill"></div>
                           <?php endif; ?>
                           <div>
@@ -124,6 +124,39 @@
                   <a class="btn btn-success" href="/recipe/edit?id=<?= $recipe['id'] ?>">Edit Info</a>
                   <button class="btn btn-danger" onclick="confirmDeleteRecipe(<?= $recipe['id'] ?>)">Delete Recipe</button>
                 </div>
+              <?php else : ?>
+                <!-- recipe report -->
+                <!-- Button trigger modal -->
+                <a type="button" data-bs-toggle="modal" data-bs-target="#report-recipe-modal<?= $recipe['id'] ?>">
+                  <i class="fa-solid fa-flag text-black" title="Report to admin"></i>
+                </a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="report-recipe-modal<?= $recipe['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Recipe Report</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <select class="form-select mb-2" id="recipe-report-type<?= $recipe['id'] ?>">
+                          <option value="" selected>Reason for report</option>
+                          <option value="spam">Spam</option>
+                          <option value="copyrights_infringement">Copyrights Infringement</option>
+                          <option value="inappropriate_content">Inappropriate Content</option>
+                          <option value="others">Others</option>
+                        </select>
+                        <textarea id="recipe-report-description<?= $recipe['id'] ?>" class="form-control" placeholder="Provide additional information"></textarea>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" onclick="report(<?= $recipe['id'] ?>, 'recipe', <?= $_SESSION['user']['id'] ?>, <?= $recipe['user_id'] ?>)">Report</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /recipe report -->
               <?php endif; ?>
             </div>
             <p><?= htmlspecialchars($recipe['description']) ?></p>
@@ -165,11 +198,44 @@
                       <p style="margin-top: -10px; font-size: 12px; color: rgba(0, 0, 0, 0.7);"><?= $comment['created'] ?></p>
                       <p style="font-size: 14px;"><?= $comment['comment'] ?></p>
                     </div>
-                    <?php if (loggedIn() && $comment['user_id'] === $_SESSION['user']['id']) : ?>
+                    <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] || (loggedIn() && $comment['user_id'] === $_SESSION['user']['id'])) : ?>
                       <div>
                         <i class="pointer-cursor fa-regular fa-pen-to-square me-2" title="Edit comment" onclick="editComment(<?= $comment['id'] ?>)"></i>
-                        <i class="pointer-cursor fa-solid fa-trash" title="Delete comment" onclick="deleteComment(<?= $comment['id'] ?>, <?= $recipe['id'] ?>)"></i>
+                        <i class="pointer-cursor fa-solid fa-trash me-2" title="Delete comment" onclick="deleteComment(<?= $comment['id'] ?>, <?= $recipe['id'] ?>)"></i>
                       </div>
+                    <?php elseif (isset($_SESSION['admin']) && $_SESSION['admin'] || (loggedIn() && $comment['user_id'] !== $_SESSION['user']['id'])) : ?>
+                      <!-- comment report -->
+                      <!-- Button trigger modal -->
+                      <a type="button" data-bs-toggle="modal" data-bs-target="#report-comment-modal<?= $comment['id'] ?>">
+                        <i class="fa-solid fa-flag text-black" title="Report to admin"></i>
+                      </a>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="report-comment-modal<?= $comment['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Comment Report</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <select class="form-select mb-2" id="comment-report-type<?= $comment['id'] ?>">
+                                <option value="" selected>Reason for report</option>
+                                <option value="spam">Spam</option>
+                                <option value="copyrights_infringement">Copyrights Infringement</option>
+                                <option value="inappropriate_content">Inappropriate Content</option>
+                                <option value="others">Others</option>
+                              </select>
+                              <textarea id="comment-report-description<?= $comment['id'] ?>" class="form-control" placeholder="Provide additional information"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-success" onclick="report(<?= $comment['id'] ?>, 'comment', <?= $_SESSION['user']['id'] ?>, <?= $comment['user_id'] ?>)">Report</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /comment report -->
                     <?php endif; ?>
                   </div>
                   <div id="comment-edit<?= $comment['id'] ?>" class="hide">
@@ -182,7 +248,6 @@
             </div>
           </div>
           <!-- comments end -->
-
         <?php else : ?>
           <?php $link = isset($_SESSION['user']) ? '/home' : '/' ?>
           <p class="text-center fs-4">This recipe doesn't exist. Go <a href="<?= $link ?>">home</a></p>
