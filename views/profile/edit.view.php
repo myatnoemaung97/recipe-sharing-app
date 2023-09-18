@@ -37,7 +37,6 @@
                     <button class="btn btn-success" type="submit">Save</button>
                     <a class="btn btn-secondary" href="/profile?id=<?= $_SESSION['user']['id'] ?>">Cancel</a>
                 </div>
-
             </form>
         </div>
     </main>

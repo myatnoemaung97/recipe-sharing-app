@@ -43,20 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
-          <div class='d-flex justify-content-between'>
-            <h5>Total - <?= count($reports) ?></h5>
-            <form action="/home/admin/recipes" method="GET">
-              <label for="">Sort by: </label>
-              <select name="sort" id="">
-                <option value="id">Id</option>
-                <option value="name">Name</option>
-                <option value="user_id">Author Id</option>
-                <option value="created">Created</option>
-                <option value="updated">Updated</option>
-              </select>
-              <button type="submit" class="btn btn-primary btn-sm">Sort</button>
-            </form>
-          </div>
+          <h5>Pending Reports</h5>
           <table class="table table-secondary table-striped table-hover">
             <thead>
               <tr>
@@ -64,23 +51,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <th scope="col">User ID</th>
                 <th scope="col">Content ID</th>
                 <th scope="col">Content Type</th>
+                <th scope="col">Author ID</th>
                 <th scope="col">Report Type</th>
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
                 <th scope="col">Status</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($reports as $report) : ?>
+              <?php foreach ($pendingReports as $report) : ?>
                 <tr>
                   <td><?= $report['id'] ?></td>
                   <td><?= $report['user_id'] ?></td>
                   <td><?= $report['content_id'] ?></td>
                   <td><?= $report['content_type'] ?></td>
+                  <td><?= $report['author_id'] ?></td>
                   <td><?= $report['report_type'] ?></td>
                   <td><?= $report['description'] ?></td>
                   <td><?= $report['date'] ?></td>
                   <td><?= $report['status'] ?></td>
+                  <td>
+                     <a class="btn btn-danger" href="/home/admin/report?id=<?= $report['id'] ?>">Review</a>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

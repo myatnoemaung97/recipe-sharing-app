@@ -89,12 +89,13 @@ CREATE TABLE `reports` (
   `description` varchar(255) DEFAULT NULL,
   `report_type` varchar(255) DEFAULT NULL,
   `author_id` int NOT NULL,
+  `link` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `content_author_id` (`author_id`),
   CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `stats`;
 CREATE TABLE `stats` (
@@ -135,7 +136,6 @@ INSERT INTO `comments` (`id`, `user_id`, `recipe_id`, `comment`, `created`, `upd
 (35, 25, 16, 'Tasty', '2023-09-12 14:02:18', NULL, 'mike'),
 (41, 23, 9, 'tjhghjgh', '2023-09-13 15:55:22', NULL, 'myat'),
 (44, 23, 16, 'let him cook', '2023-09-18 11:53:05', NULL, 'maung'),
-(46, 23, 16, 'the game bruh', '2023-09-18 11:56:12', NULL, 'maung'),
 (49, 23, 16, 'my favourite', '2023-09-18 12:01:28', NULL, 'maung'),
 (51, 29, 10, 'good', '2023-09-18 13:31:33', NULL, 'admin');
 
@@ -172,20 +172,25 @@ INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instr
 INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `rating`) VALUES
 (9, 'Ratatoullie', 12, 3, 'Skibi di', 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 1, '/resources/uploads/Baked-Zucchini_-10.jpg', 89, 23, '2023-09-07 14:02:43', 'rat meat - 1g,salad - 3', '2023-09-09 10:25:54', 0);
 INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `rating`) VALUES
-(10, 'Pizza', 2, 3, 'sdfsdfsd', 'gfhgjkghkjgh', 2, '/resources/uploads/images.jpg', 79, 23, '2023-09-07 14:29:29', 'salt - 1tsp', '2023-09-08 17:00:44', 4);
+(10, 'Pizza', 2, 3, 'sdfsdfsd', 'gfhgjkghkjgh', 2, '/resources/uploads/images.jpg', 80, 23, '2023-09-07 14:29:29', 'salt - 1tsp', '2023-09-08 17:00:44', 4);
 INSERT INTO `recipes` (`id`, `name`, `time`, `difficulty`, `description`, `instructions`, `servings`, `image`, `views`, `user_id`, `created`, `ingredients`, `updated`, `rating`) VALUES
 (11, 'fasdfsdf', 1, 2, 'asfgyuj56iu', 'oieefu98uf98sdafoisdjfoisdjfusjdf8hsdhfisdhfiuhsdifjisdjf', 4, '/resources/uploads/download.jpg', 92, 28, '2023-09-07 14:51:40', 'werwterter', NULL, 5),
 (13, 'fojsidfj', 2, 2, 's9fjdgjfdgfiduhgfidhgfdgfdjgofdjgofdjgofdjgofdijgofdjg sodgffidjfsodifjoidj sdfigfhfdigjidgsdf osdfjosfjosjfosdjfj o', 'lasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfjlasoigjferjgjdfghfdgoj osaijifoisdjf sodifjlfj j sodfjsd9j osijidoi soijfo sddkgfjsldfj. sdjffslfskdjfs jsdofjl . osjfoji . osjfo joij ifjosdf. osfj', 2, '/resources/uploads/Baked-Zucchini_-10.jpg', 65, 28, '2023-09-07 16:14:45', 'osjdfoj,esfsef,sdfsdf,sdfsdf,sfsdf,sdfsdf,xvxcv,sdfsfd,sdfsf,sdfsdf,sdad,jtyity,xvcxv', NULL, 0),
-(16, 'Grimace Shake', 5, 2, 'wmji,kjmihnuedsrcbgh', 'thjukjygjhgnfghfgfsd', 4, '/resources/uploads/16354-easy-meatloaf-mfs-74-3d9368335f824e31ab2564932cc26fa3.jpg', 237, 25, '2023-09-11 11:35:57', 'fasdfasdf,iyuiyuiyuiyui', NULL, 3),
+(16, 'Grimace Shake', 5, 2, 'wmji,kjmihnuedsrcbgh', 'thjukjygjhgnfghfgfsd', 4, '/resources/uploads/16354-easy-meatloaf-mfs-74-3d9368335f824e31ab2564932cc26fa3.jpg', 238, 25, '2023-09-11 11:35:57', 'fasdfasdf,iyuiyuiyuiyui', NULL, 3),
 (30, 'ghuohe', 2, 2, '', 'ghththtrh', 1, '/resources/uploads/image.jpg', 24, 24, '2023-09-15 16:04:21', 'dfgfdgfdg', NULL, 0),
 (31, 'Sushi', 15, 1, '', 'Make it. Roll it. Eat it.', 2, '/resources/uploads/sushi.jpg65042c32e3cd9', 15, 24, '2023-09-15 16:34:34', 'rice,carrot,seaweed', NULL, 4),
 (32, 'Flan', 30, 2, '', 'Google it', 1, '/resources/uploads/flan.jpg65068e5c23698', 1, 31, '2023-09-17 11:57:56', 'pudding', NULL, 0);
 
-INSERT INTO `reports` (`id`, `user_id`, `content_id`, `content_type`, `date`, `status`, `description`, `report_type`, `author_id`) VALUES
-(20, 24, 16, 'recipe', '2023-09-18 16:51:50', 'pending', 'afasfdasdf', 'copyrights_infringement', 25);
-INSERT INTO `reports` (`id`, `user_id`, `content_id`, `content_type`, `date`, `status`, `description`, `report_type`, `author_id`) VALUES
-(21, 24, 49, 'comment', '2023-09-18 16:53:49', 'pending', 'sdfg', 'spam', 23);
-
+INSERT INTO `reports` (`id`, `user_id`, `content_id`, `content_type`, `date`, `status`, `description`, `report_type`, `author_id`, `link`) VALUES
+(20, 24, 16, 'recipe', '2023-09-18 16:51:50', 'pending', 'afasfdasdf', 'copyrights_infringement', 25, '');
+INSERT INTO `reports` (`id`, `user_id`, `content_id`, `content_type`, `date`, `status`, `description`, `report_type`, `author_id`, `link`) VALUES
+(21, 24, 49, 'comment', '2023-09-18 16:53:49', 'pending', 'sdfg', 'spam', 23, '');
+INSERT INTO `reports` (`id`, `user_id`, `content_id`, `content_type`, `date`, `status`, `description`, `report_type`, `author_id`, `link`) VALUES
+(23, 23, 51, 'comment', '2023-09-18 18:18:43', 'pending', '', '', 29, '');
+INSERT INTO `reports` (`id`, `user_id`, `content_id`, `content_type`, `date`, `status`, `description`, `report_type`, `author_id`, `link`) VALUES
+(24, 23, 35, 'comment', '2023-09-18 18:21:21', 'pending', '', '', 25, ''),
+(25, 23, 35, 'comment', '2023-09-18 18:21:49', 'pending', '', '', 25, ''),
+(26, 23, 33, 'comment', '2023-09-18 18:22:07', 'pending', '', '', 25, '');
 
 INSERT INTO `stats` (`id`, `users`, `recipes`) VALUES
 (1, 46, 32);

@@ -54,7 +54,7 @@ function comment(recipeId) {
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-success" onclick="report(${comment.id}, 'comment', ${data.userSessionId})">Report</button>
+                      <button type="button" class="btn btn-success" onclick="report(${comment.id}, 'comment', ${data.userSessionId}, ${comment.user_id})">Report</button>
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ function deleteComment(commentId, recipeId) {
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-success" onclick="report(${comment.id}, 'comment', ${data.userSessionId})">Report</button>
+                      <button type="button" class="btn btn-success" onclick="report(${comment.id}, 'comment', ${data.userSessionId}, ${comment.user_id})">Report</button>
                     </div>
                   </div>
                 </div>

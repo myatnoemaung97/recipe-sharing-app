@@ -3,11 +3,12 @@
 namespace repositories;
 
 use Core\App;
+use Core\Database;
 use Models\Report;
 
 class ReportRepository
 {
-    protected $db;
+    protected Database $db;
 
     public function __construct()
     {
@@ -29,8 +30,30 @@ class ReportRepository
         ]);
     }
 
-    public function findAll() {
+    public function findAll() : array {
         $query = "SELECT * FROM reports";
         return $this->db->query($query)->fetchAll();
+    }
+
+    public function findByStatus(String $status) : array {
+        $query = "SELECT * FROM reports WHERE status=:status";
+        return $this->db->query($query, [
+            'status' => $status
+        ])->fetchAll();
+    }
+
+    public function findById(int $id)
+    {
+        $query = "SELECT * FROM reports WHERE id=:id";
+        return $this->db->query($query, [
+            'id' => $id
+        ])->fetch();
+    }
+
+    public function delete(int $id) {
+        $query = "DELETE FROM reports WHERE id=:id";
+        $this->db->query($query, [
+            'id' => $id
+        ]);
     }
 }

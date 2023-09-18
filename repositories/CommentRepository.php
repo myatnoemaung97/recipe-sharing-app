@@ -3,11 +3,12 @@
 namespace repositories;
 
 use Core\App;
+use Core\Database;
 use Models\Comment;
 
 class CommentRepository
 {
-    protected $db;
+    protected Database $db;
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class CommentRepository
         return $this->findLastInserted();
     }
 
-    public function findByRecipeId($recipeId) {
+    public function findByRecipeId(int $recipeId) : array {
         $statement = "SELECT * FROM comments WHERE recipe_id = :recipeId";
         return $this->db->query($statement, [
            'recipeId' => $recipeId
@@ -40,23 +41,32 @@ class CommentRepository
         return $this->db->query($query)->fetch();
     }
 
-    public function deleteById($id) {
+    public function deleteById(int $id): void
+    {
         $statement = "DELETE FROM comments WHERE id = :id";
         $this->db->query($statement, [
             'id' => $id
         ]);
     }
 
-    public function findAll() {
+    public function findAll() : array {
         $statement = "SELECT * FROM comments";
         return $this->db->query($statement)->fetchAll();
     }
 
-    public function updateComment($id, $comment) {
+    public function updateComment(int $id, string $comment): void
+    {
         $statement = "UPDATE comments SET comment = :comment WHERE id = :id";
         $this->db->query($statement, [
             'id' => $id,
             'comment' => $comment
         ]);
+    }
+
+    public function findById(int $id) {
+        $query = "SELECT * FROM comments WHERE id=:id";
+        return $this->db->query($query, [
+            'id' => $id
+        ])->fetch();
     }
 }
