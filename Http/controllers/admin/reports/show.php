@@ -1,38 +1,23 @@
 <?php
 
-use repositories\CommentRepository;
-use repositories\RecipeRepository;
+use Http\services\ReportService;
 use repositories\ReportRepository;
 
 $reportRepo = new ReportRepository();
-$recipeRepo = new RecipeRepository();
-$commentRepo = new CommentRepository();
+$reportService = new ReportService();
 
 $report = $reportRepo->findById($_GET['id']);
 
-$recipe = [];
-
-if ($report['content_type'] === 'recipe') {
-    $recipe = $recipeRepo->findById($report['content_id']);
-} elseif ($report['content_type'] === 'comment') {
-    $comment = $commentRepo->findById($report['content_id']);
-    $recipe = $recipeRepo->findById($comment['recipe_id']);
-}
-
-$comments = [];
-
-if (!empty($recipe)) {
-    $comments = $commentRepo->findByRecipeId($recipe['id']);
-}
-
-if (empty($recipe) || empty($comments)) {
+if (!$reportService->contentExists($report)) {
     $reportRepo->delete($report['id']);
     redirect("/home/admin/reports");
-
 }
+
+$reportService->review($report['id']);
 
 view("admin/reports/show.view.php", [
     'report' => $report,
-    'recipe' => $recipe,
-    'comments' => $comments
+    'recipe' => $reportService->getContent()['recipe'],
+    'comments' => $reportService->getContent()['comments'],
+
 ]);

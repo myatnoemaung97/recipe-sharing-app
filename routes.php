@@ -6,11 +6,16 @@ $router->get('/home/admin', "/admin/index.php")->only('admin');
 $router->get('/home/admin/users', "/admin/users.php")->only('admin');
 $router->get('/home/admin/recipes', "/admin/recipes.php")->only('admin');
 $router->get('/home/admin/admins', "/admin/admins.php")->only('admin');
+$router->get('/home/admin/banned', "/admin/banned.php")->only('admin');
 $router->get('/admins/create', "/admin/create.php")->only('admin');
 $router->post('/admins', "/admin/store.php")->only('admin');
 
 $router->get('/home/admin/reports', "/admin/reports/index.php")->only('admin');
 $router->get('/home/admin/report', "/admin/reports/show.php")->only('admin');
+
+$router->post('/bans', "/admin/bans/store.php")->only('admin');
+$router->delete('/bans', "/admin/bans/destroy.php")->only('admin');
+$router->post('/bans/resolve', "/admin/bans/update.php")->only('admin');
 
 $router->get('/login', "/sessions/create.php")->only('guest');
 $router->post('/login', "/sessions/store.php")->only('guest');

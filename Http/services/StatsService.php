@@ -34,7 +34,7 @@ class StatsService
     }
 
     public function getCurrentRecipes() {
-        return count($this->recipeRepo->findAll());
+        return count($this->recipeRepo->findAll(includeBanned: true));
     }
 
     public function getThisWeekUsers() {
@@ -44,7 +44,7 @@ class StatsService
     }
 
     public function getThisWeekRecipes() {
-        $allRecipes = $this->recipeRepo->findAll();
+        $allRecipes = $this->recipeRepo->findAll(includeBanned: true);
         $thisWeekRecipes = $this->dateTimeService->filter($allRecipes, 7);
         return count($thisWeekRecipes);
     }

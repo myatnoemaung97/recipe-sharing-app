@@ -84,13 +84,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <?php if ($report['content_type'] === 'recipe') : ?>
                   <div class="d-flex flex-row justify-content-center gap-2">
-                    <form action="" method="POST">
-                      <input type="hidden" name="_method" value="DELETE">
+                    <form action="/bans" method="POST">
+                      <input type="hidden" name="id" value="<?= $recipe['user_id'] ?>">
+                      <input type="hidden" name="reportId" value="<?= $report['id'] ?>">
                       <button type="submit" class="btn btn-danger">Ban User</button>
                     </form>
-                    <form action="" method="POST">
+                    <form action="/recipes" method="POST">
                       <input type="hidden" name="_method" value="DELETE">
+                      <input type="hidden" name="id" value="<?= $recipe['id'] ?>">
+                      <input type="hidden" name="reportId" value="<?= $report['id'] ?>">
                       <button type="submit" class="btn btn-warning">Delete Recipe</button>
+                    </form>
+                    <form action="/bans/resolve" method="POST">
+                      <input type="hidden" name="id" value="<?= $report['id'] ?>">
+                      <button type="submit" class="btn btn-success">No Action</button>
                     </form>
                   </div>
                 <?php endif; ?>
@@ -126,13 +133,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <?php if ($report['content_type'] === 'comment' && $report['content_id'] === $comment['id']) : ?>
                         <div class="d-flex flex-row justify-content-between align-items-center gap-2">
                           <i class="fa-solid fa-flag fa-lg text-red"></i>
-                          <form action="" method="POST">
-                            <input type="hidden" name="_method" value="DELETE">
+                          <form action="/bans" method="POST">
+                            <input type="hidden" name="id" value="<?= $comment['user_id'] ?>">
+                            <input type="hidden" name="reportId" value="<?= $report['id'] ?>">
                             <button class="btn btn-danger">Ban User</button>
                           </form>
-                          <form action="" method="POST">
+                          <form action="/comments" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="id" value="<?= $comment['id'] ?>">
+                            <input type="hidden" name="reportId" value="<?= $report['id'] ?>">
                             <button class="btn btn-warning">Delete Comment</button>
+                          </form>
+                          <form action="/bans/resolve" method="POST">
+                            <input type="hidden" name="id" value="<?= $report['id'] ?>">
+                            <button class="btn btn-success">No Action</button>
                           </form>
                         </div>
                       <?php endif; ?>

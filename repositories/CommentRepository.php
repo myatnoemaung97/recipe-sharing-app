@@ -16,21 +16,20 @@ class CommentRepository
     }
 
     public function save(Comment $comment) {
-        $statement = "INSERT INTO comments (user_id, recipe_id, comment, created, updated, user_name) VALUES (:user_id, :recipe_id, :comment, :created, :updated, :user_name)";
+        $statement = "INSERT INTO comments (user_id, recipe_id, comment, created, updated) VALUES (:user_id, :recipe_id, :comment, :created, :updated)";
         $this->db->query($statement, [
            'user_id' => $comment->getUserId(),
             'recipe_id' => $comment->getRecipeId(),
             'comment' => $comment->getComment(),
             'created' => $comment->getCreated(),
-            'updated' => $comment->getUpdated(),
-            'user_name' => $comment->getUserName()
+            'updated' => $comment->getUpdated()
         ]);
 
         return $this->findLastInserted();
     }
 
     public function findByRecipeId(int $recipeId) : array {
-        $statement = "SELECT * FROM comments WHERE recipe_id = :recipeId";
+        $statement = "SELECT comments.*,users.name as user_name FROM comments INNER JOIN users ON comments.user_id=users.id WHERE users.banned=0 AND recipe_id = :recipeId";
         return $this->db->query($statement, [
            'recipeId' => $recipeId
         ])->fetchAll();

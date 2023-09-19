@@ -9,16 +9,15 @@ class Comment
     protected $comment;
     protected $created;
     protected $updated;
-    protected $userName;
 
-    public function __construct($userId, $recipeId, $comment, $created, $updated, $userName)
+    public function __construct($userId, $recipeId, $comment, $created, $updated)
     {
         $this->userId = $userId;
         $this->recipeId = $recipeId;
         $this->comment = $comment;
         $this->created = $created;
         $this->updated = $updated;
-        $this->userName = $userName;
+
     }
 
     public function getUserId()

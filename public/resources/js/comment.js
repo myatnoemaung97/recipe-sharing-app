@@ -12,7 +12,8 @@ function comment(recipeId) {
     body: formData
   })
     .then(response => response.json())
-    .then(data => {
+    .then(data => { 
+      console.log(data.comments);
       const commentsSection = document.getElementById("comments");
       commentsSection.innerHTML = '';
 

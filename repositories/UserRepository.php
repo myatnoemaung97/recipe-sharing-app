@@ -1,13 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace repositories;
 
 use Core\App;
+use Core\Database;
 use Models\User;
 
 class UserRepository
 {
-    protected $db;
+    protected Database $db;
 
     public function __construct()
     {
@@ -29,7 +31,8 @@ class UserRepository
 
     public function findAll($sort = '') {
         $statement = "SELECT * FROM users ORDER BY " . (empty($sort) ? 'id' : $sort);
-        return $this->db->query($statement)->fetchAll();
+        $allUsers =  $this->db->query($statement)->fetchAll();
+        return array_filter($allUsers,  fn($user) => $user['banned'] !== 1);
     }
 
     public function findByEmail($email) {
@@ -73,6 +76,19 @@ class UserRepository
     public function delete($id) {
         $query = "DELETE FROM users WHERE id=:id";
         $this->db->query($query, [
+            'id' => $id
+        ]);
+    }
+
+    public function findByBanned() {
+        $query = "SELECT * FROM users WHERE banned=1";
+        return $this->db->query($query)->fetchAll();
+    }
+
+    public function setBanned($id, $value) {
+        $query = "UPDATE users SET banned=:banned WHERE id=:id";
+        $this->db->query($query, [
+            'banned' => $value,
             'id' => $id
         ]);
     }

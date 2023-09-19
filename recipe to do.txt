@@ -11,5 +11,5 @@ profile pic
 banned email list
 admin tables paginations
 
-report to admin
-comment table user name
+profile edit email already exits
+

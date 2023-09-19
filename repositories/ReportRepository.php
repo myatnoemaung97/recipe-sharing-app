@@ -50,10 +50,29 @@ class ReportRepository
         ])->fetch();
     }
 
-    public function delete(int $id) {
+    public function delete(int $id): void
+    {
         $query = "DELETE FROM reports WHERE id=:id";
         $this->db->query($query, [
             'id' => $id
+        ]);
+    }
+
+    public function setStatus(int $id, string $status) : void
+    {
+        $query = "UPDATE reports SET status=:status WHERE id=:id";
+        $this->db->query($query, [
+            'status' => $status,
+            'id' => $id
+        ]);
+    }
+
+    public function setAction(mixed $reportId, string $action)
+    {
+        $query = "UPDATE reports SET action_taken=:action WHERE id=:id";
+        $this->db->query($query, [
+            'action' => $action,
+            'id' => $reportId
         ]);
     }
 }

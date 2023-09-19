@@ -15,13 +15,14 @@
     </header>
     <main>
         <div class="d-flex justify-content-center container-fluid">
-            <div class="content container-fluid" style="max-width: 800px; background-color: #ffffcc;">
+        <div class="d-flex flex-column justify-content-center align-items-center content container-fluid" style="max-width: 800px; background-color: #ffffcc;">
                 <p style="font-size: 20px;">Sorry. You are not authorized for this action.</p>
                 <?php if (isset($_SESSION['user'])) : ?>
                     <a href="/home">Go back home</a>
                 <?php else : ?>
                     <a href="/">Go back home</a>
                 <?php endif ?>
+                <img class="text-center" src="/resources/images/not-allowed.png" alt="" style="width: 300px; height: 300px; opacity: 50%;">
             </div>
         </div>
     </main>

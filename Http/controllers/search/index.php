@@ -14,8 +14,12 @@ if (isset($params['sort'])) {
 if (isset($params['name'])) {
     $params['name'] = '%' . $params['name'] . '%';
 }
-
-$recipes = $searchService->searchByParams($params, $order);
+try {
+    $recipes = $searchService->searchByParams($params, $order);
+}
+catch (PDOException $exception) {
+    abort(404);
+}
 
 view('/search/index.view.php', [
     'recipes' => $recipes

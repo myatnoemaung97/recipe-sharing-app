@@ -1,19 +1,22 @@
 <?php
+declare(strict_types=1);
 
 namespace repositories;
 
 use Core\App;
+use Core\Database;
 
 class RecipeRepository
 {
-    protected $db;
+    protected Database $db;
 
     public function __construct()
     {
         $this->db = App::getContainer()->resolve('Core\Database');
     }
 
-    public function saveRecipe($recipe) {
+    public function saveRecipe($recipe): void
+    {
         $statement = 'insert into recipes (name, instructions, description, servings, difficulty, views, image, user_id, created, time, updated, ingredients) 
                         values (:name, :instructions, :description, :servings, :difficulty, :views, :image, :user_id, :created, :time, :updated, :ingredients)';
 
@@ -33,33 +36,36 @@ class RecipeRepository
             ]);
     }
 
-    public function findAll($sort = '') {
-        $statement = "SELECT * FROM recipes ORDER BY " . (empty($sort) ? 'id' : $sort);
+    public function findAll(string $sort = '', bool $includeBanned = false) {
+        $banFilter = $includeBanned ? '' : "WHERE users.banned = 0";
+        $statement = "SELECT recipes.* FROM recipes INNER JOIN users ON recipes.user_id = users.id $banFilter ORDER BY " . (empty($sort) ? 'id' : $sort);
         return $this->db->query($statement)->fetchAll();
     }
 
-    public function findByUserId($userId) {
+    public function findByUserId(int $userId) {
         $statement = "SELECT * FROM recipes WHERE user_id = :userId";
         return $this->db->query($statement, [
             'userId' => $userId
         ])->fetchAll();
     }
 
-    public function findById($recipeId) {
+    public function findById(int $recipeId) {
         $statement = "SELECT * FROM recipes WHERE id = :id";
         return $this->db->query($statement, [
            'id' => $recipeId
         ])->fetch();
     }
 
-    public function delete($id) {
+    public function delete(int $id): void
+    {
         $statement = "DELETE FROM recipes WHERE id = :id";
         $this->db->query($statement, [
             'id' => $id
         ]);
     }
 
-    public function updateRecipe($attributes) {
+    public function updateRecipe($attributes): void
+    {
 
         $statement = 'UPDATE recipes SET  ';
 
@@ -76,7 +82,8 @@ class RecipeRepository
         $this->db->query($statement, $attributes);
     }
 
-    public function updateView($id) {
+    public function updateView(int $id): void
+    {
         $recipe = $this->findById($id);
         if (!$recipe) {
             return;
@@ -89,7 +96,8 @@ class RecipeRepository
         $this->updateRecipe($attributes);
     }
 
-    public function updateRating($id, $rating) {
+    public function updateRating(int $id, int $rating): void
+    {
         $attributes = [
             'rating' => $rating,
             'id' => $id
@@ -97,11 +105,12 @@ class RecipeRepository
         $this->updateRecipe($attributes);
     }
 
-    public function findByParams($query, $params = []) {
+    public function findByParams(string $query, $params = []) {
         return $this->db->query($query, $params)->fetchAll();
     }
 
-    public function updateImage($image, $id) {
+    public function updateImage($image, $id): void
+    {
         $query = "UPDATE recipes SET image = :image WHERE id =:id ";
         $this->db->query($query, [
             'image' => $image,

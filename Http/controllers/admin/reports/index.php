@@ -5,5 +5,7 @@ use repositories\ReportRepository;
 $reportRepo = new ReportRepository();
 
 view("admin/reports/index.view.php", [
-    'pendingReports' => $reportRepo->findByStatus('pending')
+    'pending' => $reportRepo->findByStatus('pending'),
+    'inReview' => $reportRepo->findByStatus('in review'),
+    'resolved' => $reportRepo->findByStatus('resolved')
 ]);

@@ -1,15 +1,15 @@
 <?php
+declare(strict_types=1);
 
 use Core\Session;
 use Core\validators\RegistrationValidator;
-use Models\User;
-use repositories\StatsRepo;
-use repositories\UserRepository;
+use Http\services\RegistrationService;
 
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+// validate the form
 $errors = RegistrationValidator::validate($name, $email, $password);
 
 if (!empty($errors)) {
@@ -17,16 +17,27 @@ if (!empty($errors)) {
     redirect('/register');
 }
 
-$userRepo = new UserRepository();
-$user = new User($name, $email, $password);
-$user = $userRepo->save($user);
+// check if the user is banned or the email is already used
+$registrationService = new RegistrationService();
 
-login($user);
+if ($registrationService->bannedUser($email)) {
+    Session::flashErrorsAndOldData([
+        'email' => "The account with this email is banned."
+    ], $_POST);
+    redirect('/register');
+}
 
-$_SESSION['admin'] = false;
+if ($registrationService->emailExists($email)) {
+    Session::flashErrorsAndOldData([
+        'email' => "An account with this email already exists"
+    ], $_POST);
+    redirect('/register');
+}
 
-
-$statsRepo = new StatsRepo();
-$statsRepo->updateUsers();
+// register user
+$registrationService->register([
+    'name' => $name,
+    'email' => $email,
+    'password' => $password]);
 
 redirect('/home');

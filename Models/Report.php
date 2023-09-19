@@ -14,9 +14,8 @@ class Report
     protected string $description;
     protected string $date;
     protected string $status;
-    protected string $link;
 
-    public function __construct(int $userId, int $contentId, string $contentType, int $authorId, string $reportType, string $description, String $date, string $status, string $link)
+    public function __construct(int $userId, int $contentId, string $contentType, int $authorId, string $reportType, string $description, String $date, string $status)
     {
         $this->userId = $userId;
         $this->contentId = $contentId;
@@ -26,7 +25,6 @@ class Report
         $this->description = $description;
         $this->date = $date;
         $this->status = $status;
-        $this->link = $link;
     }
 
     public function getUserId(): int

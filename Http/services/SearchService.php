@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Http\services;
 
@@ -18,7 +19,7 @@ class SearchService
     }
 
     private function buildQuery($params, $order = '') {
-        $statement = "SELECT * FROM recipes";
+        $statement = "SELECT recipes.* FROM recipes INNER JOIN users ON recipes.user_id=users.id WHERE users.banned=0";
 
         if (empty($params)) {
             return $statement;
@@ -31,33 +32,33 @@ class SearchService
     }
 
     private function bindOrder($query, $order) {
-        return $query . " ORDER BY $order" . ' DESC';
+        return $query . " ORDER BY recipes.$order" . ' DESC';
     }
 
     private function bindParams($query, $params) {
-        $query .=  ' WHERE ';
+        $query .=  ' AND ';
 
         foreach ($params as $key => $value) {
 
             if ($key === 'name') {
-                $query .= $key . " LIKE ?" . " AND ";
+                $query .= 'recipes.'.$key . " LIKE ?" . " AND ";
                 continue;
             }
             if ($key === 'time') {
-                $query .= $key . "< ?" . " AND ";
+                $query .= 'recipes.'.$key . "< ?" . " AND ";
                 continue;
             }
 
             if ($key === 'difficulty') {
                 if ($value == 0) {
-                    $query .= $key . '> ?' . ' AND ';
+                    $query .= 'recipes.'.$key . '> ?' . ' AND ';
                     continue;
                 }
-                $query .= $key . "= ?" . " AND ";
+                $query .= 'recipes.'.$key . "= ?" . " AND ";
                 continue;
             }
 
-            $query .= $key . "= ?" . " AND ";
+            $query .= 'recipes.'.$key . "= ?" . " AND ";
         }
 
         return substr($query, 0, -5);

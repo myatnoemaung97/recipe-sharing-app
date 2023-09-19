@@ -43,8 +43,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
+          <!-- pending reports -->
           <h5>Pending Reports</h5>
-          <table class="table table-secondary table-striped table-hover">
+          <table class="table table-danger table-striped table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -60,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($pendingReports as $report) : ?>
+              <?php foreach ($pending as $report) : ?>
                 <tr>
                   <td><?= $report['id'] ?></td>
                   <td><?= $report['user_id'] ?></td>
@@ -72,12 +73,87 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <td><?= $report['date'] ?></td>
                   <td><?= $report['status'] ?></td>
                   <td>
-                     <a class="btn btn-danger" href="/home/admin/report?id=<?= $report['id'] ?>">Review</a>
+                    <a class="btn btn-danger" href="/home/admin/report?id=<?= $report['id'] ?>">Review</a>
                   </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
           </table>
+          <!-- /pending reports -->
+
+          <!-- in review -->
+          <h5>In Reviews</h5>
+          <table class="table table-warning table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Content ID</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Author ID</th>
+                <th scope="col">Report Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($inReview as $report) : ?>
+                <tr>
+                  <td><?= $report['id'] ?></td>
+                  <td><?= $report['user_id'] ?></td>
+                  <td><?= $report['content_id'] ?></td>
+                  <td><?= $report['content_type'] ?></td>
+                  <td><?= $report['author_id'] ?></td>
+                  <td><?= $report['report_type'] ?></td>
+                  <td><?= $report['description'] ?></td>
+                  <td><?= $report['date'] ?></td>
+                  <td><?= $report['status'] ?></td>
+                  <td>
+                    <a class="btn btn-danger" href="/home/admin/report?id=<?= $report['id'] ?>">Review</a>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+          <!-- /in review -->
+
+          <!-- resolved -->
+          <h5>Resolved</h5>
+          <table class="table table-secondary table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Content ID</th>
+                <th scope="col">Content Type</th>
+                <th scope="col">Author ID</th>
+                <th scope="col">Report Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action Taken</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($resolved as $report) : ?>
+                <tr>
+                  <td><?= $report['id'] ?></td>
+                  <td><?= $report['user_id'] ?></td>
+                  <td><?= $report['content_id'] ?></td>
+                  <td><?= $report['content_type'] ?></td>
+                  <td><?= $report['author_id'] ?></td>
+                  <td><?= $report['report_type'] ?></td>
+                  <td><?= $report['description'] ?></td>
+                  <td><?= $report['date'] ?></td>
+                  <td><?= $report['status'] ?></td>
+                  <td><?= $report['action_taken'] ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+          <!-- /resolved -->
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->

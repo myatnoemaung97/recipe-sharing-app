@@ -22,8 +22,7 @@ $comment = new Comment(
     recipeId: $_POST['recipeId'],
     comment: $_POST['comment'],
     created: date('Y-m-d H:i:s'),
-    updated: null,
-    userName: $_SESSION['user']['name']
+    updated: null
 );
 $newComment = $commentRepo->save($comment);
 

@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function confirmDeleteRecipe(recipeId, admin = false) {
+function confirmDeleteRecipe(recipeId, admin = false, report = false) {
     if (confirm("Are you sure you want to delete this recipe?")) {
         const formData = new FormData();
 
@@ -39,6 +39,9 @@ function confirmDeleteRecipe(recipeId, admin = false) {
                     console.log("Recipe deleted successfully");
                     if (admin === false) {
                         window.location.href = "/recipes";
+                    }
+                    if (report === false) {
+                        window.location.href = "/home/admin/reports";
                     }
                     if (admin === true) {
                         window.location.href = "/home/admin/recipes"
@@ -122,6 +125,13 @@ function report(contentId, contentType, userId, authorId) {
     formData.append('reportType', reportType);
     formData.append('description', description);
     formData.append('authorId', authorId);
+
+    console.log(`contentId:${contentId}`);
+    console.log(`contentType:${contentType}`);
+    console.log(`userId:${userId}`);
+    console.log(`reportType:${reportType}`);
+    console.log(`description:${description}`);
+    console.log(`authorId:${authorId}`);
 
     fetch("/reports", {
         method: "POST",
