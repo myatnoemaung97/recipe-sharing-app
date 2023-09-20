@@ -19,5 +19,5 @@ view("admin/reports/show.view.php", [
     'report' => $report,
     'recipe' => $reportService->getContent()['recipe'],
     'comments' => $reportService->getContent()['comments'],
-
+    'pendingNoti' => count($reportRepo->findByStatus('pending'))
 ]);

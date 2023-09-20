@@ -51,7 +51,7 @@
                     <a href="/home/admin/reports" class="nav-link">
                         <i class="nav-icon fa-solid fa-flag"></i>
                         <p>
-                            Reports
+                            Reports <span class="badge bg-danger ms-2"><?= $pendingNoti ?></span>
                         </p>
                     </a>
                 </li>

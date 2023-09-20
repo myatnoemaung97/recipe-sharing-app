@@ -177,8 +177,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <script src="/resources/dist/js/adminlte.min.js?v=3.2.0"></script>
 
-        <script src="/resources/dist/js/demo.js"></script>
-
         <script>
           $(function() {
             $('#example2').DataTable({
