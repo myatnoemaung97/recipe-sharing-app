@@ -124,7 +124,7 @@
                   <a class="btn btn-success" href="/recipe/edit?id=<?= $recipe['id'] ?>">Edit Info</a>
                   <button class="btn btn-danger" onclick="confirmDeleteRecipe(<?= $recipe['id'] ?>)">Delete Recipe</button>
                 </div>
-              <?php else : ?>
+              <?php elseif (loggedIn() && $_SESSION['user']['id'] !== $recipe['user_id']) : ?>
                 <!-- recipe report -->
                 <!-- Button trigger modal -->
                 <a type="button" data-bs-toggle="modal" data-bs-target="#report-recipe-modal<?= $recipe['id'] ?>">

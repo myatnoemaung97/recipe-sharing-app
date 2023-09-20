@@ -22,7 +22,7 @@
                 <?php else : ?>
                     <a href="/">Go back home</a>
                 <?php endif ?>
-                <img class="text-center" src="/resources/images/not-allowed.png" alt="" style="width: 300px; height: 300px; opacity: 50%;">
+                
             </div>
         </div>
     </main>
